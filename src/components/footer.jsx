@@ -1,3 +1,4 @@
+import Link from "next/link"
 export default function Footer() {
     return (
         <>
@@ -17,28 +18,50 @@ export default function Footer() {
                     <p>
                         HAVOR SMARTA DIGITAL.
                         <br />
-                        Providing reliable tech since 2010
+                        Your Digital IT Partner Solution
                     </p>
                 </aside>
                 <nav>
                     <h6 className="footer-title">Services</h6>
-                    <a className="link link-hover">Branding</a>
-                    <a className="link link-hover">Design</a>
-                    <a className="link link-hover">Marketing</a>
-                    <a className="link link-hover">Advertisement</a>
+                    <Link href="/services/web-development">
+                        <p className="link link-hover">Branding</p>
+                    </Link>
+                    <Link href="/services/web-development">
+                        <p className="link link-hover">Design</p>
+                    </Link>
+                    <Link href="/services/web-development">
+                        <p className="link link-hover">Marketing</p>
+                    </Link>
+                    <Link href="/services/web-development">
+                        <p className="link link-hover">Advertisement</p>
+                    </Link>
                 </nav>
                 <nav>
                     <h6 className="footer-title">Company</h6>
-                    <a className="link link-hover">About us</a>
-                    <a className="link link-hover">Contact</a>
-                    <a className="link link-hover">Jobs</a>
-                    <a className="link link-hover">Press kit</a>
+                    <Link href="/services/web-development">
+                        <p className="link link-hover">About us</p>
+                    </Link>
+                    <Link href="/services/web-development">
+                        <p className="link link-hover">Contact</p>
+                    </Link>
+                    <Link href="/services/web-development">
+                        <p className="link link-hover">Jobs</p>
+                    </Link>
+                    <Link href="/services/web-development">
+                        <p className="link link-hover">Press kit</p>
+                    </Link>
                 </nav>
                 <nav>
                     <h6 className="footer-title">Legal</h6>
-                    <a className="link link-hover">Terms of use</a>
-                    <a className="link link-hover">Privacy policy</a>
-                    <a className="link link-hover">Cookie policy</a>
+                    <Link href="/services/web-development">
+                        <p className="link link-hover">Terms of use</p>
+                    </Link>
+                    <Link href="/services/web-development">
+                        <p className="link link-hover">Privacy policy</p>
+                    </Link>
+                    <Link href="/services/web-development">
+                        <p className="link link-hover">Cookie policy</p>
+                    </Link>
                 </nav>
 
             </footer>

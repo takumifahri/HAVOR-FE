@@ -161,7 +161,7 @@ export default function Navbar() {
     return (
         <>
             <nav
-                className={`sticky top-0 ${scrolled ? 'bg-white/95' : 'bg-white/90'} backdrop-blur-lg border-b border-gray-200 shadow-sm z-50 transition-colors duration-300`}
+                className={`sticky top-0 ${scrolled || activeDropdown ? 'bg-white/95 text-gray-700' : 'bg-transparent text-white'} backdrop-blur-lg border-b border-gray-200 shadow-sm z-50 transition-colors duration-300`}
             >
                 <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
                     {/* Logo */}
@@ -175,7 +175,7 @@ export default function Navbar() {
                             <div key={item.name} className="relative dropdown-container">
                                 <button
                                     onClick={() => toggleDropdown(item.name)}
-                                    className="flex items-center gap-1 text-gray-700 hover:text-gray-900 font-medium transition duration-200"
+                                    className={`flex items-center gap-1 ${scrolled || activeDropdown ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-300'} text-lg font-medium transition duration-200`}
                                 >
                                     {item.name}
                                     <ChevronDown
@@ -185,24 +185,24 @@ export default function Navbar() {
                             </div>
                         ))}
 
-                        <Link href="/work" className="text-gray-700 hover:text-gray-900 font-medium transition duration-200">
-                            Work
-                        </Link>
-                        <Link href="/insights" className="text-gray-700 hover:text-gray-900 font-medium transition duration-200">
-                            Insights
+                        <Link
+                            href="/insights"
+                            className={`${scrolled || activeDropdown ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-300'} font-medium transition duration-200`}
+                        >
+                            Articles
                         </Link>
                     </div>
 
                     {/* Search and Contact */}
                     <div className="hidden md:flex items-center space-x-4">
-                        <button className="p-2 text-gray-600 hover:text-gray-900 transition duration-200">
+                        <button className={`${scrolled || activeDropdown ? 'text-gray-700' : 'text-white hover:text-gray-300'} p-2 transition duration-200`}>
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
                         </button>
                         <Link
                             href="/contact"
-                            className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200"
+                            className={`btn btn-primary text-lg ${scrolled || activeDropdown ? 'text-white hover:text-gray-300': 'text-white'} px-6 py-2 rounded-lg font-medium transition duration-200`}
                         >
                             Contact
                         </Link>
@@ -210,7 +210,7 @@ export default function Navbar() {
 
                     {/* Mobile Menu Button */}
                     <div
-                        className="md:hidden text-gray-700 p-2 hover:bg-gray-100 rounded-lg transition duration-300"
+                        className={`${scrolled || activeDropdown ? 'text-gray-700' : 'text-white'} md:hidden p-2 hover:bg-gray-100 rounded-lg transition duration-300`}
                         onClick={toggleMobileMenu}
                     >
                         {isMobileMenuOpen ? (
@@ -229,11 +229,10 @@ export default function Navbar() {
                         <div className={`grid gap-12 ${activeDropdown === 'Expertises' ? 'grid-cols-4' : 'grid-cols-2'}`}>
                             {navigationItems.find(item => item.name === activeDropdown)?.sections.map((section) => (
                                 <div key={section.title}>
-                                    <h3 className="text-sm font-semibold text-orange-500 uppercase tracking-wider mb-6">
+                                    <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-6">
                                         {section.title}
-                                        <hr className="border-t border-gray-200 my-4" />
+                                        <hr className="border-slate-600" />
                                     </h3>
-
                                     <div className="space-y-4">
                                         {section.items.map((subItem) => (
                                             <Link
@@ -253,7 +252,6 @@ export default function Navbar() {
                 </div>
             )}
 
-
             {/* Mobile Sidebar Overlay */}
             {isMobileMenuOpen && (
                 <div
@@ -266,7 +264,7 @@ export default function Navbar() {
             <div className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="flex flex-col h-full">
                     {/* Sidebar Header */}
-                    <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                    <div className="flex items-center justify-end p-6 border-b border-gray-200">
                         <X size={24} className="text-gray-600 hover:text-gray-900 transition duration-300" onClick={closeMobileMenu} />
                     </div>
 
@@ -289,8 +287,9 @@ export default function Navbar() {
                                         <div className="mt-4 space-y-4">
                                             {item.sections.map((section) => (
                                                 <div key={section.title}>
-                                                    <h4 className="text-xs font-semibold text-orange-500 uppercase tracking-wider mb-3">
+                                                    <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-3">
                                                         {section.title}
+                                                        <hr className="border-gray-200" />
                                                     </h4>
                                                     <div className="space-y-2 pl-4">
                                                         {section.items.map((subItem) => (
@@ -324,7 +323,7 @@ export default function Navbar() {
                     <div className="p-6 border-t border-gray-200">
                         <Link
                             href="/contact"
-                            className="flex bg-orange-500 hover:bg-orange-600 text-white py-3 px-4 rounded-lg justify-center items-center font-medium transition duration-300"
+                            className="flex bg-sky-600 hover:bg-sky-700 text-white py-3 px-4 rounded-lg justify-center items-center font-medium transition duration-300"
                             onClick={closeMobileMenu}
                         >
                             Contact
