@@ -1,21 +1,16 @@
 "use client"
+
 import { useEffect, useState } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { MoveUpRight, Menu, X } from 'lucide-react';
+import { MoveUpRight, Menu, X, ChevronDown } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState(null);
+    const [activeMobileDropdown, setActiveMobileDropdown] = useState(null);
 
     useEffect(() => {
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-        });
-
-        // Add scroll event listener
         const handleScroll = () => {
             const isScrolled = window.scrollY > 20;
             if (isScrolled !== scrolled) {
@@ -23,14 +18,20 @@ export default function Navbar() {
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
+        const handleClickOutside = (event) => {
+            const target = event.target;
+            if (!target.closest('.dropdown-container') && !target.closest('.mega-menu')) {
+                setActiveDropdown(null);
+            }
+        };
 
-        // Initial check
+        window.addEventListener('scroll', handleScroll);
+        document.addEventListener('click', handleClickOutside);
         handleScroll();
 
-        // Clean up
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            document.removeEventListener('click', handleClickOutside);
         };
     }, [scrolled]);
 
@@ -40,68 +41,176 @@ export default function Navbar() {
 
     const closeMobileMenu = () => {
         setIsMobileMenuOpen(false);
+        setActiveMobileDropdown(null);
     };
+
+    const toggleDropdown = (dropdownName) => {
+        setActiveDropdown(activeDropdown === dropdownName ? null : dropdownName);
+    };
+
+    const toggleMobileDropdown = (dropdownName) => {
+        setActiveMobileDropdown(activeMobileDropdown === dropdownName ? null : dropdownName);
+    };
+
+    const navigationItems = [
+        {
+            name: 'Expertises',
+            sections: [
+                {
+                    title: 'Services',
+                    items: [
+                        { name: 'Digital Transformation Strategy', href: '/digital-transformation' },
+                        { name: 'Customer Experience Strategy', href: '/customer-experience' },
+                        { name: 'IT Strategy and Governance', href: '/it-strategy' },
+                        { name: 'Strategic Data Analytics', href: '/data-analytics' },
+                        { name: 'Mobile Application Development', href: '/mobile-development' },
+                        { name: 'Web Application Development', href: '/web-development' },
+                        { name: 'Digital Commerce Solutions', href: '/digital-commerce' },
+                        { name: 'Search Engine Optimization', href: '/seo' }
+                    ]
+                },
+                {
+                    title: 'Creative',
+                    items: [
+                        { name: 'Brand Equity Management', href: '/brand-management' },
+                        { name: 'Digital Experience Design', href: '/digital-design' },
+                        { name: 'Strategic Content Marketing', href: '/content-marketing' },
+                        { name: 'Visual Storytelling', href: '/visual-storytelling' },
+                        { name: 'Integrated Marketing Campaigns', href: '/marketing-campaigns' },
+                        { name: 'Digital Advertising', href: '/digital-advertising' },
+                        { name: 'Social Media Management', href: '/social-media' },
+                        { name: 'Influencer Marketing', href: '/influencer-marketing' }
+                    ]
+                },
+                {
+                    title: 'Products',
+                    items: [
+                        { name: 'Chatbot', href: '/chatbot' },
+                        { name: 'Content Management', href: '/content-management' },
+                        { name: 'E-Commerce', href: '/ecommerce' },
+                        { name: 'Field Sales Management', href: '/field-sales' },
+                        { name: 'Fundraising', href: '/fundraising' },
+                        { name: 'Learning Management', href: '/learning-management' },
+                        { name: 'Point of Sale', href: '/point-of-sale' },
+                        { name: 'Retail Management', href: '/retail-management' }
+                    ]
+                },
+                {
+                    title: 'Management',
+                    items: [
+                        { name: 'Community Management', href: '/community-management' },
+                        { name: 'Customer Management', href: '/customer-management' },
+                        { name: 'Event Management', href: '/event-management' },
+                        { name: 'Field Service Management', href: '/field-service' },
+                        { name: 'Inventory Management', href: '/inventory-management' },
+                        { name: 'Order Management', href: '/order-management' },
+                        { name: 'Project Management', href: '/project-management' },
+                        { name: 'Sales Performance Management', href: '/sales-performance' }
+                    ]
+                }
+            ]
+        },
+        {
+            name: 'Industries',
+            sections: [
+                {
+                    title: 'Technology',
+                    items: [
+                        { name: 'Software Development', href: '/software-development' },
+                        { name: 'Cloud Solutions', href: '/cloud-solutions' },
+                        { name: 'AI & Machine Learning', href: '/ai-ml' },
+                        { name: 'Cybersecurity', href: '/cybersecurity' }
+                    ]
+                },
+                {
+                    title: 'Business',
+                    items: [
+                        { name: 'Financial Services', href: '/financial-services' },
+                        { name: 'Healthcare', href: '/healthcare' },
+                        { name: 'Retail & E-commerce', href: '/retail' },
+                        { name: 'Manufacturing', href: '/manufacturing' }
+                    ]
+                }
+            ]
+        },
+        {
+            name: 'About',
+            sections: [
+                {
+                    title: 'Company',
+                    items: [
+                        { name: 'Our Story', href: '/our-story' },
+                        { name: 'Mission & Vision', href: '/mission-vision' },
+                        { name: 'Our Team', href: '/team' },
+                        { name: 'Careers', href: '/careers' }
+                    ]
+                },
+                {
+                    title: 'Values',
+                    items: [
+                        { name: 'Innovation', href: '/innovation' },
+                        { name: 'Quality', href: '/quality' },
+                        { name: 'Partnership', href: '/partnership' },
+                        { name: 'Growth', href: '/growth' }
+                    ]
+                }
+            ]
+        }
+    ];
 
     return (
         <>
             <nav
-                className={`sticky top-0 ${scrolled ? 'bg-white/25' : 'bg-white/5'} backdrop-blur-lg border-b border-white/20 shadow-lg z-50 transition-colors duration-300`}
-                data-aos="fade-down"
-                data-aos-duration="1000"
+                className={`sticky top-0 ${scrolled ? 'bg-white/95' : 'bg-white/90'} backdrop-blur-lg border-b border-gray-200 shadow-sm z-50 transition-colors duration-300`}
             >
-                <div className="flex items-center justify-between py-4 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24">
+                <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
                     {/* Logo */}
-                    <div className="flex items-center space-x-2">
-                        <span className="text-[#919193] font-bold text-lg sm:text-xl"> HAVOR SMARTA
-                            DIGITAL</span>
+                    <div className="flex items-center space-x-2 text-xl">
+                        Havor Digital Tech
                     </div>
 
                     {/* Desktop Navigation Links */}
-                    <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-                        <a
-                            href="#about"
-                            className={`${scrolled ? 'text-[#919193]' : 'text-[#919193]/90'} hover:text-[#525254] transition duration-300 text-base lg:text-lg font-medium`}
-                        >
-                            Experties
-                        </a>
-                        <a
-                            href="#services"
-                            className={`${scrolled ? 'text-[#919193]' : 'text-[#919193]/90'} hover:text-[#525254] transition duration-300 text-base lg:text-lg font-medium`}
-                        >
-                            Projects
-                        </a>
-                        <a
-                            href="#portfolio"
-                            className={`${scrolled ? 'text-[#919193]' : 'text-[#919193]/90'} hover:text-[#525254] transition duration-300 text-base lg:text-lg font-medium`}
-                        >
-                            Article
-                        </a>
-                        <a
-                            href="#contact"
-                            className={`${scrolled ? 'text-[#919193]' : 'text-[#919193]/90'} hover:text-[#525254] transition duration-300 text-base lg:text-lg font-medium`}
-                        >
-                            About Us
-                        </a>
-                        <a
-                            href="#history"
-                            className={`${scrolled ? 'text-[#919193]' : 'text-[#919193]/90'} hover:text-[#525254] transition duration-300 text-base lg:text-lg font-medium`}
-                        >
-                            History
-                        </a>
+                    <div className="hidden md:flex items-center space-x-8">
+                        {navigationItems.map((item) => (
+                            <div key={item.name} className="relative dropdown-container">
+                                <button
+                                    onClick={() => toggleDropdown(item.name)}
+                                    className="flex items-center gap-1 text-gray-700 hover:text-gray-900 font-medium transition duration-200"
+                                >
+                                    {item.name}
+                                    <ChevronDown
+                                        className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === item.name ? 'rotate-180' : ''}`}
+                                    />
+                                </button>
+                            </div>
+                        ))}
+
+                        <Link href="/work" className="text-gray-700 hover:text-gray-900 font-medium transition duration-200">
+                            Work
+                        </Link>
+                        <Link href="/insights" className="text-gray-700 hover:text-gray-900 font-medium transition duration-200">
+                            Insights
+                        </Link>
                     </div>
 
-                    {/* Desktop Get Started Button */}
-                    <div className={`hidden md:flex rounded-lg bg-[#3768AA] ${scrolled ? 'border-black' : 'border-black/30'} border py-2 px-4 lg:px-5 justify-center items-center gap-2 cursor-pointer hover:bg-white/10 hover:border-white/50  hover:text-black transition duration-300 backdrop-blur-sm`}>
-                        <span className="text-sm lg:text-base text-base-100 font-medium">Contact</span>
-                        <div className='border border-base-100 rounded-full p-1'>
-                            <MoveUpRight className='text-base-100' size={12} strokeWidth={2.25} />
-                        </div>
+                    {/* Search and Contact */}
+                    <div className="hidden md:flex items-center space-x-4">
+                        <button className="p-2 text-gray-600 hover:text-gray-900 transition duration-200">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                        <Link
+                            href="/contact"
+                            className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200"
+                        >
+                            Contact
+                        </Link>
                     </div>
-
 
                     {/* Mobile Menu Button */}
                     <div
-                        className="md:hidden text-black p-2 hover:bg-white/10 rounded-lg transition duration-300"
+                        className="md:hidden text-gray-700 p-2 hover:bg-gray-100 rounded-lg transition duration-300"
                         onClick={toggleMobileMenu}
                     >
                         {isMobileMenuOpen ? (
@@ -113,77 +222,113 @@ export default function Navbar() {
                 </div>
             </nav>
 
+            {/* Full Width Mega Menu */}
+            {activeDropdown && (
+                <div className="mega-menu fixed top-[73px] left-0 right-0 bg-white border-b border-gray-200 shadow-lg z-40">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                        <div className={`grid gap-12 ${activeDropdown === 'Expertises' ? 'grid-cols-4' : 'grid-cols-2'}`}>
+                            {navigationItems.find(item => item.name === activeDropdown)?.sections.map((section) => (
+                                <div key={section.title}>
+                                    <h3 className="text-sm font-semibold text-orange-500 uppercase tracking-wider mb-6">
+                                        {section.title}
+                                        <hr className="border-t border-gray-200 my-4" />
+                                    </h3>
+
+                                    <div className="space-y-4">
+                                        {section.items.map((subItem) => (
+                                            <Link
+                                                key={subItem.name}
+                                                href={subItem.href}
+                                                className="block text-gray-600 hover:text-gray-900 transition duration-200 text-sm"
+                                                onClick={() => setActiveDropdown(null)}
+                                            >
+                                                {subItem.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
+
+
             {/* Mobile Sidebar Overlay */}
             {isMobileMenuOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50z-40 md:hidden"
+                    className="fixed inset-0 bg-black/50 z-40 md:hidden"
                     onClick={closeMobileMenu}
                 ></div>
             )}
 
             {/* Mobile Sidebar */}
-            <div className={`fixed top-0 right-0 h-full w-80 max-w-[55vw] bg-white/10 backdrop-blur-lg border-l border-white/20 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-                }`}>
+            <div className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="flex flex-col h-full">
                     {/* Sidebar Header */}
-                    <div className="flex items-center justify-end p-6 border-b border-white/20">
-
-                        <X size={24} className=" text-[#525254]   hover:bg-white/10 rounded-lg transition duration-300" onClick={closeMobileMenu} />
-
+                    <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                        <X size={24} className="text-gray-600 hover:text-gray-900 transition duration-300" onClick={closeMobileMenu} />
                     </div>
 
                     {/* Sidebar Navigation */}
-                    <div className="flex-1 px-6 py-8">
-                        <nav className="space-y-6">
-                            <a
-                                href="/about"
-                                className="block text-[#525254]/90 hover:text-[#525254] transition duration-300 text-lg font-medium py-2"
-                                onClick={closeMobileMenu}
-                            >
-                                About
-                            </a>
-                            <a
-                                href="/services"
-                                className="block text-[#525254]/90 hover:text-[#525254] transition duration-300 text-lg font-medium py-2"
-                                onClick={closeMobileMenu}
-                            >
-                                Services
-                            </a>
-                            <a
-                                href="/portfolio"
-                                className="block text-[#525254]/90 hover:text-[#525254] transition duration-300 text-lg font-medium py-2"
-                                onClick={closeMobileMenu}
-                            >
-                                Portfolio
-                            </a>
-                            <a
-                                href="/contact"
-                                className="block text-[#525254]/90 hover:text-[#525254] transition duration-300 text-lg font-medium py-2"
-                                onClick={closeMobileMenu}
-                            >
-                                Contact Us
-                            </a>
-                            <a
-                                href="/history"
-                                className="block text-[#525254]/90 hover:text-[#525254] transition duration-300 text-lg font-medium py-2"
-                                onClick={closeMobileMenu}
-                            >
-                                History
-                            </a>
+                    <div className="flex-1 px-6 py-8 overflow-y-auto">
+                        <nav className="space-y-4">
+                            {navigationItems.map((item) => (
+                                <div key={item.name} className="border-b border-gray-100 pb-4">
+                                    <button
+                                        onClick={() => toggleMobileDropdown(item.name)}
+                                        className="flex items-center justify-between w-full text-left text-lg font-semibold text-gray-900 py-2"
+                                    >
+                                        {item.name}
+                                        <ChevronDown
+                                            className={`w-5 h-5 transition-transform duration-200 ${activeMobileDropdown === item.name ? 'rotate-180' : ''}`}
+                                        />
+                                    </button>
+
+                                    {activeMobileDropdown === item.name && (
+                                        <div className="mt-4 space-y-4">
+                                            {item.sections.map((section) => (
+                                                <div key={section.title}>
+                                                    <h4 className="text-xs font-semibold text-orange-500 uppercase tracking-wider mb-3">
+                                                        {section.title}
+                                                    </h4>
+                                                    <div className="space-y-2 pl-4">
+                                                        {section.items.map((subItem) => (
+                                                            <Link
+                                                                key={subItem.name}
+                                                                href={subItem.href}
+                                                                className="block text-gray-600 hover:text-gray-900 text-sm transition duration-200 py-1"
+                                                                onClick={closeMobileMenu}
+                                                            >
+                                                                {subItem.name}
+                                                            </Link>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+
+                            <Link href="/work" className="block text-gray-700 hover:text-gray-900 font-medium py-3 border-b border-gray-100" onClick={closeMobileMenu}>
+                                Work
+                            </Link>
+                            <Link href="/insights" className="block text-gray-700 hover:text-gray-900 font-medium py-3" onClick={closeMobileMenu}>
+                                Insights
+                            </Link>
                         </nav>
                     </div>
 
-                    {/* Sidebar Footer with Get Started Button */}
-                    <div className="p-6 border-t border-white/20">
-                        <div
-                            className=" flex rounded-full border border-white/30 py-3 px-4 justify-center items-center gap-2 cursor-pointer hover:bg-white/10 hover:border-white/50 transition duration-300 backdrop-blur-sm"
+                    {/* Sidebar Footer */}
+                    <div className="p-6 border-t border-gray-200">
+                        <Link
+                            href="/contact"
+                            className="flex bg-orange-500 hover:bg-orange-600 text-white py-3 px-4 rounded-lg justify-center items-center font-medium transition duration-300"
                             onClick={closeMobileMenu}
                         >
-                            <span className="text-black font-medium">Get Started</span>
-                            <div className='border border-white rounded-full p-1'>
-                                <MoveUpRight className='text-white' size={12} strokeWidth={2.25} />
-                            </div>
-                        </div>
+                            Contact
+                        </Link>
                     </div>
                 </div>
             </div>
