@@ -36,7 +36,7 @@ export default function Hero() {
                             <p className="text-xl text-white mb-8 max-w-2xl">
                                 Havor Digital Tech is a leading Indonesian digital agency, driving proven results in technology and marketing for enterprise clients.
                             </p>
-                            <button className="bg-sky-600 hover:bg-sky-700 text-white px-8 py-3 rounded-lg font-medium transition duration-200">
+                            <button className="bg-[#3768AA] hover:bg-[#3564A4] text-white px-8 py-3 rounded-lg font-medium transition duration-200">
                                 Explore Our Solutions
                             </button>
                         </div>
@@ -97,7 +97,7 @@ export default function Hero() {
                             <p className="text-lg text-white mb-8 max-w-md mx-auto leading-relaxed">
                                 Havor Digital Tech is a leading Indonesian digital agency, driving proven results in technology and marketing for enterprise clients.
                             </p>
-                            <button className="bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-lg font-medium transition duration-200 mx-auto">
+                            <button className="bg-[#3768AA] hover:bg-[#3564A4] text-white px-6 py-3 rounded-lg font-medium transition duration-200 mx-auto">
                                 Explore Our Solutions
                             </button>
                         </div>

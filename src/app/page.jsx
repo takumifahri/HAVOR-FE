@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { motion } from 'framer-motion';
 import { MoveUpRight } from 'lucide-react';
 import Hero from '@/components/Landing/hero';
+import Clients from '@/components/Landing/clients';
+import VisiMisi from '@/components/Landing/Visi-Misi';
 
 export default function Home() {
   useEffect(() => {
@@ -23,7 +25,14 @@ export default function Home() {
         <section>
           <Hero />
         </section>
-
+        {/* Strategic */}
+        <section>
+          <VisiMisi />
+        </section>
+        {/* Clients Section */}
+        <section>
+          <Clients />
+        </section>
       </main>
       {/* <Footer /> */}
     </>

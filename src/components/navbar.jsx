@@ -111,7 +111,7 @@ export default function Navbar() {
             ]
         },
         {
-            name: 'Industries',
+            name: 'Works',
             sections: [
                 {
                     title: 'Technology',
@@ -161,7 +161,7 @@ export default function Navbar() {
     return (
         <>
             <nav
-                className={`sticky top-0 ${scrolled || activeDropdown ? 'bg-white/95 text-gray-700' : 'bg-transparent text-white'} backdrop-blur-lg border-b border-slate-50 shadow-sm z-50 transition-colors duration-300`}
+                className={`sticky top-0 ${scrolled || activeDropdown ? 'bg-white text-gray-700' : 'bg-transparent text-white'} backdrop-blur-lg hadow-sm z-50 transition-colors duration-300`}
             >
                 <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
                     {/* Logo */}
@@ -189,7 +189,7 @@ export default function Navbar() {
                             href="/insights"
                             className={`${scrolled || activeDropdown ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-300'} font-medium transition duration-200`}
                         >
-                            Articles
+                            Blog
                         </Link>
                     </div>
 
@@ -202,7 +202,7 @@ export default function Navbar() {
                         </button>
                         <Link
                             href="/contact"
-                            className={`btn btn-primary text-lg ${scrolled || activeDropdown ? 'text-white hover:text-gray-300': 'text-white'} px-6 py-2 rounded-lg font-medium transition duration-200`}
+                            className={`bg-[#3768AA] hover:bg-[#3564A4] text-lg ${scrolled || activeDropdown ? 'text-white hover:text-gray-300': 'text-white'} px-6 py-2 rounded-lg font-medium transition duration-200`}
                         >
                             Contact
                         </Link>
@@ -323,7 +323,7 @@ export default function Navbar() {
                     <div className="p-6 border-t border-gray-200">
                         <Link
                             href="/contact"
-                            className="flex bg-sky-600 hover:bg-sky-700 text-white py-3 px-4 rounded-lg justify-center items-center font-medium transition duration-300"
+                            className="flex bg-[#3768AA] hover:bg-[#3564A4] text-white py-3 px-4 rounded-lg justify-center items-center font-medium transition duration-300"
                             onClick={closeMobileMenu}
                         >
                             Contact
