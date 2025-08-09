@@ -17,7 +17,7 @@ export default function Hero() {
         <>
             {/* Hero Section */}
             <div
-                className="relative min-h-screen overflow-hidden -mt-18"
+                className="relative min-h-[100dvh] overflow-hidden -mt-18"
                 style={{
                     backgroundImage: `url(/assets/wpp.svg)`,
                     backgroundSize: 'cover',
@@ -105,58 +105,58 @@ export default function Hero() {
 
                     {/* Stats Section - Different layouts for desktop and mobile */}
                     {/* Desktop Stats */}
-                    <div className="hidden lg:grid lg:grid-cols-4 gap-8 mt-2">
-                        <div className="text-center">
-                            <div className="text-3xl font-bold text-white">
+                    <div className="hidden lg:grid lg:grid-cols-4 gap-4 xl:gap-8 -mt-3 xl:-mt-5">
+                        <div className="text-center space-y-1">
+                            <div className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-white">
                                 <CountUp end={2010} duration={2} />
                             </div>
-                            <div className="text-white">Stand since</div>
+                            <div className="text-white text-sm xl:text-base">Stand since</div>
                         </div>
-                        <div className="text-center">
-                            <div className="text-3xl font-bold text-white">
+                        <div className="text-center space-y-1">
+                            <div className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-white">
                                 <CountUp end={900} duration={2} suffix="+" />
                             </div>
-                            <div className="text-white">Digital Projects</div>
+                            <div className="text-white text-sm xl:text-base">Digital Projects</div>
                         </div>
-                        <div className="text-center">
-                            <div className="text-3xl font-bold text-white">
+                        <div className="text-center space-y-1">
+                            <div className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-white">
                                 <CountUp end={150} duration={2} suffix="+" />
                             </div>
-                            <div className="text-white">Satisfied Clients</div>
+                            <div className="text-white text-sm xl:text-base">Satisfied Clients</div>
                         </div>
-                        <div className="text-center">
-                            <div className="text-3xl font-bold text-white">
+                        <div className="text-center space-y-1">
+                            <div className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-white">
                                 <CountUp end={200} duration={2} suffix="+" />
                             </div>
-                            <div className="text-white">Digital Experts</div>
+                            <div className="text-white text-sm xl:text-base">Digital Experts</div>
                         </div>
                     </div>
 
-                    {/* Mobile Stats */}
-                    <div className="lg:hidden grid grid-cols-2 gap-6 mt-8 px-4">
-                        <div className="text-center">
-                            <div className="text-2xl sm:text-3xl font-bold text-white">
+                    {/* Mobile and Tablet Stats */}
+                    <div className="lg:hidden grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 mt-6 sm:mt-3 mb-5 px-2 sm:px-4">
+                        <div className="text-center space-y-1">
+                            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
                                 <CountUp end={16} duration={2} suffix="+" />
                             </div>
-                            <div className="text-white text-sm sm:text-base">Years of Excellence</div>
+                            <div className="text-white text-xs sm:text-sm md:text-base">Years of Excellence</div>
                         </div>
-                        <div className="text-center">
-                            <div className="text-2xl sm:text-3xl font-bold text-white">
+                        <div className="text-center space-y-1">
+                            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
                                 <CountUp end={900} duration={2} suffix="+" />
                             </div>
-                            <div className="text-white text-sm sm:text-base">Digital Projects</div>
+                            <div className="text-white text-xs sm:text-sm md:text-base">Digital Projects</div>
                         </div>
-                        <div className="text-center">
-                            <div className="text-2xl sm:text-3xl font-bold text-white">
+                        <div className="text-center space-y-1">
+                            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
                                 <CountUp end={150} duration={2} suffix="+" />
                             </div>
-                            <div className="text-white text-sm sm:text-base">Satisfied Clients</div>
+                            <div className="text-white text-xs sm:text-sm md:text-base">Satisfied Clients</div>
                         </div>
-                        <div className="text-center">
-                            <div className="text-2xl sm:text-3xl font-bold text-white">
+                        <div className="text-center space-y-1">
+                            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
                                 <CountUp end={200} duration={2} suffix="+" />
                             </div>
-                            <div className="text-white text-sm sm:text-base">Digital Experts</div>
+                            <div className="text-white text-xs sm:text-sm md:text-base">Digital Experts</div>
                         </div>
                     </div>
                 </div>
