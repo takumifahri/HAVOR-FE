@@ -9,6 +9,7 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
     const [activeMobileDropdown, setActiveMobileDropdown] = useState(null);
+    const [hoverTimeout, setHoverTimeout] = useState(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -50,6 +51,29 @@ export default function Navbar() {
 
     const toggleMobileDropdown = (dropdownName) => {
         setActiveMobileDropdown(activeMobileDropdown === dropdownName ? null : dropdownName);
+    };
+
+    // Handle hover enter with delay
+    const handleMouseEnter = (dropdownName) => {
+        if (hoverTimeout) {
+            clearTimeout(hoverTimeout);
+        }
+        setActiveDropdown(dropdownName);
+    };
+
+    // Handle hover leave with delay
+    const handleMouseLeave = () => {
+        const timeout = setTimeout(() => {
+            setActiveDropdown(null);
+        }, 150); // 150ms delay before closing
+        setHoverTimeout(timeout);
+    };
+
+    // Cancel hover timeout when entering dropdown area
+    const handleDropdownMouseEnter = () => {
+        if (hoverTimeout) {
+            clearTimeout(hoverTimeout);
+        }
     };
 
     const navigationItems = [
@@ -161,18 +185,23 @@ export default function Navbar() {
     return (
         <>
             <nav
-                className={`sticky top-0 ${scrolled || activeDropdown ? 'bg-white text-gray-700' : 'bg-transparent text-white'} backdrop-blur-lg hadow-sm z-50 transition-colors duration-300`}
+                className={`sticky top-0 ${scrolled || activeDropdown ? 'bg-white text-gray-700' : 'bg-transparent text-white'} backdrop-blur-lg shadow-sm z-50 transition-colors duration-300`}
             >
                 <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
                     {/* Logo */}
-                    <div className="flex items-center space-x-2 text-xl">
+                    <div className="flex items-center space-x-2 text-xl font-bold">
                         Havor Digital Tech
                     </div>
 
                     {/* Desktop Navigation Links */}
                     <div className="hidden md:flex items-center space-x-8">
                         {navigationItems.map((item) => (
-                            <div key={item.name} className="relative dropdown-container">
+                            <div 
+                                key={item.name} 
+                                className="relative dropdown-container"
+                                onMouseEnter={() => handleMouseEnter(item.name)}
+                                onMouseLeave={handleMouseLeave}
+                            >
                                 <button
                                     onClick={() => toggleDropdown(item.name)}
                                     className={`flex items-center gap-1 ${scrolled || activeDropdown ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-300'} text-lg font-medium transition duration-200`}
@@ -210,7 +239,7 @@ export default function Navbar() {
 
                     {/* Mobile Menu Button */}
                     <div
-                        className={`${scrolled || activeDropdown ? 'text-gray-700' : 'text-white'} md:hidden p-2 hover:bg-gray-100 rounded-lg transition duration-300`}
+                        className={`${scrolled || activeDropdown ? 'text-gray-700' : 'text-white'} md:hidden p-2 hover:bg-gray-100 rounded-lg transition duration-300 cursor-pointer`}
                         onClick={toggleMobileMenu}
                     >
                         {isMobileMenuOpen ? (
@@ -224,21 +253,25 @@ export default function Navbar() {
 
             {/* Full Width Mega Menu */}
             {activeDropdown && (
-                <div className="mega-menu fixed top-[73px] left-0 right-0 bg-white border-b border-gray-200 shadow-lg z-40">
+                <div 
+                    className="mega-menu fixed top-[73px] left-0 right-0 bg-white border-b border-gray-200 shadow-lg z-40"
+                    onMouseEnter={handleDropdownMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                         <div className={`grid gap-12 ${activeDropdown === 'Expertises' ? 'grid-cols-4' : 'grid-cols-2'}`}>
                             {navigationItems.find(item => item.name === activeDropdown)?.sections.map((section) => (
                                 <div key={section.title}>
-                                    <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-6">
+                                    <h3 className="text-sm font-semibold text-[#525254] uppercase tracking-wider mb-6">
                                         {section.title}
-                                        <hr className="border-slate-600" />
+                                        <hr className="border-[#919193] mt-2" />
                                     </h3>
                                     <div className="space-y-4">
                                         {section.items.map((subItem) => (
                                             <Link
                                                 key={subItem.name}
                                                 href={subItem.href}
-                                                className="block text-gray-600 hover:text-gray-900 transition duration-200 text-sm"
+                                                className="block text-gray-600 hover:text-[#3564A4] transition duration-200 text-sm py-1"
                                                 onClick={() => setActiveDropdown(null)}
                                             >
                                                 {subItem.name}
@@ -264,8 +297,9 @@ export default function Navbar() {
             <div className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="flex flex-col h-full">
                     {/* Sidebar Header */}
-                    <div className="flex items-center justify-end p-6 border-b border-gray-200">
-                        <X size={24} className="text-gray-600 hover:text-gray-900 transition duration-300" onClick={closeMobileMenu} />
+                    <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                        <div className="text-lg font-bold text-gray-900">Menu</div>
+                        <X size={24} className="text-gray-600 hover:text-gray-900 transition duration-300 cursor-pointer" onClick={closeMobileMenu} />
                     </div>
 
                     {/* Sidebar Navigation */}
@@ -287,16 +321,16 @@ export default function Navbar() {
                                         <div className="mt-4 space-y-4">
                                             {item.sections.map((section) => (
                                                 <div key={section.title}>
-                                                    <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-3">
+                                                    <h4 className="text-xs font-semibold text-[#525254] uppercase tracking-wider mb-3">
                                                         {section.title}
-                                                        <hr className="border-gray-200" />
+                                                        <hr className="border-[#919193] mt-1" />
                                                     </h4>
                                                     <div className="space-y-2 pl-4">
                                                         {section.items.map((subItem) => (
                                                             <Link
                                                                 key={subItem.name}
                                                                 href={subItem.href}
-                                                                className="block text-gray-600 hover:text-gray-900 text-sm transition duration-200 py-1"
+                                                                className="block text-gray-600 hover:text-[#3564A4] text-sm transition duration-200 py-1"
                                                                 onClick={closeMobileMenu}
                                                             >
                                                                 {subItem.name}
@@ -310,10 +344,10 @@ export default function Navbar() {
                                 </div>
                             ))}
 
-                            <Link href="/work" className="block text-gray-700 hover:text-gray-900 font-medium py-3 border-b border-gray-100" onClick={closeMobileMenu}>
+                            <Link href="/work" className="block text-gray-700 hover:text-[#3564A4] font-medium py-3 border-b border-gray-100" onClick={closeMobileMenu}>
                                 Work
                             </Link>
-                            <Link href="/insights" className="block text-gray-700 hover:text-gray-900 font-medium py-3" onClick={closeMobileMenu}>
+                            <Link href="/insights" className="block text-gray-700 hover:text-[#3564A4] font-medium py-3" onClick={closeMobileMenu}>
                                 Insights
                             </Link>
                         </nav>
