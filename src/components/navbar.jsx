@@ -161,7 +161,7 @@ export default function Navbar() {
     return (
         <>
             <nav
-                className={`sticky top-0 ${scrolled || activeDropdown ? 'bg-white/95 text-gray-700' : 'bg-transparent text-white'} backdrop-blur-lg border-b border-gray-200 shadow-sm z-50 transition-colors duration-300`}
+                className={`sticky top-0 ${scrolled || activeDropdown ? 'bg-white/95 text-gray-700' : 'bg-transparent text-white'} backdrop-blur-lg border-b border-slate-50 shadow-sm z-50 transition-colors duration-300`}
             >
                 <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
                     {/* Logo */}
