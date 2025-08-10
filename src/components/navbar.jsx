@@ -190,7 +190,7 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
                     {/* Logo */}
                     <div className="flex items-center space-x-2 text-xl font-bold">
-                        Havor Digital Tech
+                        Havor S.M
                     </div>
 
                     {/* Desktop Navigation Links */}
