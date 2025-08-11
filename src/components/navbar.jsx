@@ -81,12 +81,17 @@ export default function Navbar() {
             name: 'Expertises',
             sections: [
                 {
-                    title: 'Services',
+                    title: 'Enterprise IT Solutions',
                     items: [
                         { name: 'Digital Transformation Strategy', href: '/digital-transformation' },
                         { name: 'Customer Experience Strategy', href: '/customer-experience' },
                         { name: 'IT Strategy and Governance', href: '/it-strategy' },
-                        { name: 'Strategic Data Analytics', href: '/data-analytics' },
+                        { name: 'Strategic Data Analytics', href: '/data-analytics' }
+                    ]
+                },
+                {
+                    title: 'Website Development',
+                    items: [
                         { name: 'Mobile Application Development', href: '/mobile-development' },
                         { name: 'Web Application Development', href: '/web-development' },
                         { name: 'Digital Commerce Solutions', href: '/digital-commerce' },
@@ -94,42 +99,21 @@ export default function Navbar() {
                     ]
                 },
                 {
-                    title: 'Creative',
+                    title: 'Mobile Apps Development',
                     items: [
                         { name: 'Brand Equity Management', href: '/brand-management' },
                         { name: 'Digital Experience Design', href: '/digital-design' },
                         { name: 'Strategic Content Marketing', href: '/content-marketing' },
-                        { name: 'Visual Storytelling', href: '/visual-storytelling' },
+                        { name: 'Visual Storytelling', href: '/visual-storytelling' }
+                    ]
+                },
+                {
+                    title: 'Social Media Maintenance',
+                    items: [
                         { name: 'Integrated Marketing Campaigns', href: '/marketing-campaigns' },
                         { name: 'Digital Advertising', href: '/digital-advertising' },
                         { name: 'Social Media Management', href: '/social-media' },
                         { name: 'Influencer Marketing', href: '/influencer-marketing' }
-                    ]
-                },
-                {
-                    title: 'Products',
-                    items: [
-                        { name: 'Chatbot', href: '/chatbot' },
-                        { name: 'Content Management', href: '/content-management' },
-                        { name: 'E-Commerce', href: '/ecommerce' },
-                        { name: 'Field Sales Management', href: '/field-sales' },
-                        { name: 'Fundraising', href: '/fundraising' },
-                        { name: 'Learning Management', href: '/learning-management' },
-                        { name: 'Point of Sale', href: '/point-of-sale' },
-                        { name: 'Retail Management', href: '/retail-management' }
-                    ]
-                },
-                {
-                    title: 'Management',
-                    items: [
-                        { name: 'Community Management', href: '/community-management' },
-                        { name: 'Customer Management', href: '/customer-management' },
-                        { name: 'Event Management', href: '/event-management' },
-                        { name: 'Field Service Management', href: '/field-service' },
-                        { name: 'Inventory Management', href: '/inventory-management' },
-                        { name: 'Order Management', href: '/order-management' },
-                        { name: 'Project Management', href: '/project-management' },
-                        { name: 'Sales Performance Management', href: '/sales-performance' }
                     ]
                 }
             ]
@@ -190,7 +174,7 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
                     {/* Logo */}
                     <div className="flex items-center space-x-2 text-xl font-bold">
-                        Havor S.M
+                        HAVOR S.M
                     </div>
 
                     {/* Desktop Navigation Links */}

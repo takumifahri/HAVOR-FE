@@ -3,6 +3,8 @@
 import { motion, useAnimation } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
+import clientsData from '@/data/clients.json';
 
 export default function Clients() {
     const scrollRef = useRef(null)
@@ -12,35 +14,31 @@ export default function Clients() {
     const controls2 = useAnimation()
     const [contentWidth, setContentWidth] = useState(0)
     const [contentWidth2, setContentWidth2] = useState(0)
+    const [clients, setClients] = useState([]);
 
-    const clients = [
-        "Aqua-logo.png",
-        "bigstore-logo.webp",
-        "changi-airport-logo.png",
-        "INTILAND-logo.png",
-        "indocement.webp",
-        // "Semen-tiga-roda.jpg",
-        "shop-n-drive-logo.jpg",
-        "Bubu-logo.webp",
-        "Alfamidi.png",
-        "bisnis.gif",
-        "REDY-logo.png",
-        "ckb.jpg",
-        "metra.png",
-        "cometa.png",
-        "HHR.jpg",
-        "garuda.png",
-        "tma.png",
-        "KingSecurity.jpg",
-        "Mahkota.jpeg",
-        "brain.jpeg",
-        "sinarmas.png",
-        "sango.png",
-        "alfamart.png",
-        "PCS.jpg",
-        "trigraha.png",
-        "FBI.png",
-    ];
+    const getClients = async () => {
+        try {
+            console.log("Clients data:", clientsData);
+            if (clientsData && clientsData.data) {
+                setClients(clientsData.data);
+            }
+        } catch (error) {
+            console.error("Error processing clients data:", error);
+        }
+    }
+
+    useEffect(() => {
+        getClients();
+    }, []);
+
+    // Function to create URL-friendly slug from client name
+    const createSlug = (name) => {
+        return name
+            .toLowerCase()
+            .replace(/[^a-z0-9 -]/g, '') // Remove special characters
+            .replace(/\s+/g, '-') // Replace spaces with hyphens
+            .replace(/-+/g, '-'); // Remove duplicate hyphens
+    }
 
     // Split clients into two halves
     const midPoint = Math.ceil(clients.length / 2)
@@ -63,25 +61,21 @@ export default function Clients() {
             }
         }
 
-        // Measure initially and after a small delay to ensure DOM is ready
         const timer = setTimeout(measureContentWidth, 100)
         measureContentWidth()
 
-        // Re-measure on window resize
         window.addEventListener("resize", measureContentWidth)
         return () => {
             window.removeEventListener("resize", measureContentWidth)
             clearTimeout(timer)
         }
-    }, [])
+    }, [clients])
 
     useEffect(() => {
         if (contentWidth > 0 && contentWidth2 > 0) {
-            // Speed: 40px per second for smoother animation
             const animationDuration1 = contentWidth / 40
             const animationDuration2 = contentWidth2 / 40
 
-            // First row animation - left to right (normal)
             const startFirstRow = () => {
                 controls.set({ x: 0 })
                 controls.start({
@@ -95,7 +89,6 @@ export default function Clients() {
                 })
             }
 
-            // Second row animation - right to left (reverse)
             const startSecondRow = () => {
                 controls2.set({ x: -contentWidth2 })
                 controls2.start({
@@ -124,7 +117,6 @@ export default function Clients() {
             const animationDuration1 = contentWidth / 40
             const animationDuration2 = contentWidth2 / 40
 
-            // Resume first row from current position
             controls.start({
                 x: -contentWidth,
                 transition: {
@@ -135,7 +127,6 @@ export default function Clients() {
                 },
             })
 
-            // Resume second row from current position
             controls2.start({
                 x: 0,
                 transition: {
@@ -148,7 +139,6 @@ export default function Clients() {
         }
     }
 
-    // Variants untuk animasi fade in
     const containerVariants = {
         hidden: { opacity: 0, y: 50 },
         visible: {
@@ -188,88 +178,117 @@ export default function Clients() {
     }
 
     return (
-        <motion.div
-            id="clients"
-            className="max-w-full mx-auto px-4 py-16 lg:py-24 overflow-hidden"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-        >
-            {/* Header */}
-            <motion.div 
-                className="text-center mb-16"
-                variants={titleVariants}
-            >
-                <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
-                    OUR CLIENTS
-                </h2>
-                <div className="w-24 h-1 bg-gradient-to-r from-[#525254] to-[#3564A4] mx-auto rounded-full"></div>
-            </motion.div>
-
-            {/* Container for seamless scrolling */}
-            <motion.div
-                className="relative overflow-hidden space-y-8"
-                variants={scrollerVariants}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-            >
-                {/* First Container - First Half of Clients (Left to Right) */}
+        <>
+            <div className="py-16 lg:py-24">
                 <motion.div
-                    ref={contentRef}
-                    className="flex space-x-8 items-center"
-                    animate={controls}
-                    style={{ width: 'max-content' }}
-                    initial={{ x: 0 }}
+                    id="clients"
+                    className="max-w-7xl mx-auto px-4  overflow-hidden"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
                 >
-                    {duplicatedFirstHalf.map((query, index) => (
-                        <motion.div
-                            key={`first-${index}`}
-                            className="flex-shrink-0 w-32 h-20 flex items-center justify-center mx-4"
-                            whileHover={{
-                                scale: 1.05,
-                                transition: { duration: 0.3 }
-                            }}
-                        >
-                            <Image
-                                src={`/assets/Clients/${query}`}
-                                alt={query}
-                                width={128}
-                                height={80}
-                                className="object-contain max-w-full max-h-full opacity-70 hover:opacity-100 transition-opacity duration-300"
-                            />
-                        </motion.div>
-                    ))}
+                    {/* Header */}
+                    <motion.div
+                        className="text-center mb-16"
+                        variants={titleVariants}
+                    >
+                        <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
+                            OUR CLIENTS
+                        </h2>
+                        <div className="w-24  h-1 bg-gradient-to-r from-[#525254] to-[#3564A4] mx-auto rounded-full"></div>
+                    </motion.div>
                 </motion.div>
 
-                {/* Second Container - Second Half of Clients (Right to Left) */}
                 <motion.div
-                    ref={contentRef2}
-                    className="flex space-x-8 items-center"
-                    animate={controls2}
-                    style={{ width: 'max-content' }}
-                    initial={{ x: 0 }}
+                    id="clients"
+                    className="max-w-full mx-auto px-4  overflow-hidden"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
                 >
-                    {duplicatedSecondHalf.map((query, index) => (
+
+
+                    {/* Container for seamless scrolling */}
+                    <motion.div
+                        className="relative overflow-hidden space-y-8"
+                        variants={scrollerVariants}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        {/* First Container - First Half of Clients (Left to Right) */}
                         <motion.div
-                            key={`second-${index}`}
-                            className="flex-shrink-0 w-32 h-20 flex items-center justify-center mx-4"
-                            whileHover={{
-                                scale: 1.05,
-                                transition: { duration: 0.3 }
-                            }}
+                            ref={contentRef}
+                            className="flex space-x-8 items-center"
+                            animate={controls}
+                            style={{ width: 'max-content' }}
+                            initial={{ x: 0 }}
                         >
-                            <Image
-                                src={`/assets/Clients/${query}`}
-                                alt={query}
-                                width={128}
-                                height={80}
-                                className="object-contain max-w-full max-h-full opacity-70 hover:opacity-100 transition-opacity duration-300"
-                            />
+                            {duplicatedFirstHalf.map((client, index) => (
+                                <Link
+                                    key={`first-${client.id}-${index}`}
+                                    href={`/clients/${createSlug(client.name)}`}
+                                    className="block"
+                                >
+                                    <motion.div
+                                        className="flex-shrink-0 w-32 h-20 flex items-center justify-center mx-4 cursor-pointer"
+                                        whileHover={{
+                                            scale: 1.05,
+                                            transition: { duration: 0.3 }
+                                        }}
+                                        title={client.name}
+                                    >
+                                        <Image
+                                            src={`/assets/Clients/${client.image}`}
+                                            alt={client.name}
+                                            width={128}
+                                            height={80}
+                                            className="object-contain max-w-full max-h-full opacity-70 hover:opacity-100 transition-opacity duration-300"
+                                        />
+                                    </motion.div>
+                                </Link>
+                            ))}
                         </motion.div>
-                    ))}
+
+                        {/* Second Container - Second Half of Clients (Right to Left) */}
+                        <motion.div
+                            ref={contentRef2}
+                            className="flex space-x-8 items-center"
+                            animate={controls2}
+                            style={{ width: 'max-content' }}
+                            initial={{ x: 0 }}
+                        >
+                            {duplicatedSecondHalf.map((client, index) => (
+                                <Link
+                                    key={`second-${client.id}-${index}`}
+                                    href={`/clients/${createSlug(client.name)}`}
+                                    className="block"
+                                >
+                                    <motion.div
+                                        className="flex-shrink-0 w-32 h-20 flex items-center justify-center mx-4 cursor-pointer"
+                                        whileHover={{
+                                            scale: 1.05,
+                                            transition: { duration: 0.3 }
+                                        }}
+                                        title={client.name}
+                                    >
+                                        <Image
+                                            src={`/assets/Clients/${client.image}`}
+                                            alt={client.name}
+                                            width={128}
+                                            height={80}
+                                            className="object-contain max-w-full max-h-full opacity-70 hover:opacity-100 transition-opacity duration-300"
+                                        />
+                                    </motion.div>
+                                </Link>
+                            ))}
+                        </motion.div>
+                    </motion.div>
                 </motion.div>
-            </motion.div>
-        </motion.div>
+            </div>
+
+        </>
+
     )
 }

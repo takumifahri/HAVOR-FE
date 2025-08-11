@@ -1,0 +1,230 @@
+{
+    "message" : "Successfully retrieved the clients data.",
+    "data": [
+        {
+            "id": 1,
+            "name": "Aqua",
+            "image": "Aqua-logo.png",
+            "shortDescription": "Logo for Aqua brand.",
+            "longDescription": "This is the official logo for the Aqua brand, used in various marketing materials.",
+            "dateProjects": "2023-01-15",
+            "essentialVariable": "branding"
+        },
+        {
+            "id": 2,
+            "name": "Bigstore",
+            "image": "bigstore-logo.webp",
+            "shortDescription": "Logo for Bigstore.",
+            "longDescription": "The Bigstore logo represents the company's retail identity.",
+            "dateProjects": "2023-02-10",
+            "essentialVariable": "retail"
+        },
+        {
+            "id": 3,
+            "name": "Changi Airport",
+            "image": "changi-airport-logo.png",
+            "shortDescription": "Logo for Changi Airport.",
+            "longDescription": "This logo is used for Changi Airport's branding and promotional materials.",
+            "dateProjects": "2023-03-05",
+            "essentialVariable": "aviation"
+        },
+        {
+            "id": 4,
+            "name": "INTILAND",
+            "image": "INTILAND-logo.png",
+            "shortDescription": "Logo for INTILAND.",
+            "longDescription": "The INTILAND logo is a representation of the company's real estate projects.",
+            "dateProjects": "2023-04-20",
+            "essentialVariable": "real estate"
+        },
+        {
+            "id": 5,
+            "name": "Indocement",
+            "image": "indocement.webp",
+            "shortDescription": "Logo for Indocement.",
+            "longDescription": "This logo is used for Indocement's corporate identity and marketing.",
+            "dateProjects": "2023-05-18",
+            "essentialVariable": "construction"
+        },
+        {
+            "id": 6,
+            "name": "Shop N Drive",
+            "image": "shop-n-drive-logo.jpg",
+            "shortDescription": "Logo for Shop N Drive.",
+            "longDescription": "The Shop N Drive logo is used for automotive service branding.",
+            "dateProjects": "2023-06-12",
+            "essentialVariable": "automotive"
+        },
+        {
+            "id": 7,
+            "name": "Bubu",
+            "image": "Bubu-logo.webp",
+            "shortDescription": "Logo for Bubu.",
+            "longDescription": "This logo represents Bubu's digital marketing services.",
+            "dateProjects": "2023-07-08",
+            "essentialVariable": "digital marketing"
+        },
+        {
+            "id": 8,
+            "name": "Alfamidi",
+            "image": "Alfamidi.png",
+            "shortDescription": "Logo for Alfamidi.",
+            "longDescription": "The Alfamidi logo is used for the company's retail chain branding.",
+            "dateProjects": "2023-08-01",
+            "essentialVariable": "retail"
+        },
+        {
+            "id": 9,
+            "name": "Bisnis",
+            "image": "bisnis.gif",
+            "shortDescription": "Logo for Bisnis.",
+            "longDescription": "This logo is used for Bisnis's corporate identity.",
+            "dateProjects": "2023-09-10",
+            "essentialVariable": "corporate"
+        },
+        {
+            "id": 10,
+            "name": "REDY",
+            "image": "REDY-logo.png",
+            "shortDescription": "Logo for REDY.",
+            "longDescription": "The REDY logo is used for the company's technology solutions branding.",
+            "dateProjects": "2023-10-05",
+            "essentialVariable": "technology"
+        },
+        {
+            "id": 11,
+            "name": "CKB",
+            "image": "ckb.jpg",
+            "shortDescription": "Logo for CKB.",
+            "longDescription": "This logo represents CKB's logistics services.",
+            "dateProjects": "2023-11-15",
+            "essentialVariable": "logistics"
+        },
+        {
+            "id": 12,
+            "name": "Metra",
+            "image": "metra.png",
+            "shortDescription": "Logo for Metra.",
+            "longDescription": "The Metra logo is used for the company's telecommunications projects.",
+            "dateProjects": "2023-12-01",
+            "essentialVariable": "telecommunications"
+        },
+        {
+            "id": 13,
+            "name": "Cometa",
+            "image": "cometa.png",
+            "shortDescription": "Logo for Cometa.",
+            "longDescription": "This logo is used for Cometa's corporate branding.",
+            "dateProjects": "2024-01-10",
+            "essentialVariable": "corporate"
+        },
+        {
+            "id": 14,
+            "name": "HHR",
+            "image": "HHR.jpg",
+            "shortDescription": "Logo for HHR.",
+            "longDescription": "The HHR logo represents the company's hospitality services.",
+            "dateProjects": "2024-02-20",
+            "essentialVariable": "hospitality"
+        },
+        {
+            "id": 15,
+            "name": "Garuda",
+            "image": "garuda.png",
+            "shortDescription": "Logo for Garuda.",
+            "longDescription": "This logo is used for Garuda's aviation branding.",
+            "dateProjects": "2024-03-15",
+            "essentialVariable": "aviation"
+        },
+        {
+            "id": 16,
+            "name": "TMA",
+            "image": "tma.png",
+            "shortDescription": "Logo for TMA.",
+            "longDescription": "The TMA logo is used for the company's maritime services.",
+            "dateProjects": "2024-04-10",
+            "essentialVariable": "maritime"
+        },
+        {
+            "id": 17,
+            "name": "King Security",
+            "image": "KingSecurity.jpg",
+            "shortDescription": "Logo for King Security.",
+            "longDescription": "This logo represents King Security's protection services.",
+            "dateProjects": "2024-05-05",
+            "essentialVariable": "security"
+        },
+        {
+            "id": 18,
+            "name": "Mahkota",
+            "image": "Mahkota.jpeg",
+            "shortDescription": "Logo for Mahkota.",
+            "longDescription": "The Mahkota logo is used for the company's jewelry branding.",
+            "dateProjects": "2024-06-01",
+            "essentialVariable": "jewelry"
+        },
+        {
+            "id": 19,
+            "name": "Brain",
+            "image": "brain.jpeg",
+            "shortDescription": "Logo for Brain.",
+            "longDescription": "This logo is used for Brain's educational services.",
+            "dateProjects": "2024-07-15",
+            "essentialVariable": "education"
+        },
+        {
+            "id": 20,
+            "name": "Sinarmas",
+            "image": "sinarmas.png",
+            "shortDescription": "Logo for Sinarmas.",
+            "longDescription": "The Sinarmas logo represents the company's financial services.",
+            "dateProjects": "2024-08-10",
+            "essentialVariable": "finance"
+        },
+        {
+            "id": 21,
+            "name": "Sango",
+            "image": "sango.png",
+            "shortDescription": "Logo for Sango.",
+            "longDescription": "This logo is used for Sango's ceramics branding.",
+            "dateProjects": "2024-09-05",
+            "essentialVariable": "ceramics"
+        },
+        {
+            "id": 22,
+            "name": "Alfamart",
+            "image": "alfamart.png",
+            "shortDescription": "Logo for Alfamart.",
+            "longDescription": "The Alfamart logo is used for the company's retail chain branding.",
+            "dateProjects": "2024-10-01",
+            "essentialVariable": "retail"
+        },
+        {
+            "id": 23,
+            "name": "PCS",
+            "image": "PCS.jpg",
+            "shortDescription": "Logo for PCS.",
+            "longDescription": "This logo represents PCS's cleaning services.",
+            "dateProjects": "2024-11-15",
+            "essentialVariable": "cleaning"
+        },
+        {
+            "id": 24,
+            "name": "Trigraha",
+            "image": "trigraha.png",
+            "shortDescription": "Logo for Trigraha.",
+            "longDescription": "The Trigraha logo is used for the company's real estate projects.",
+            "dateProjects": "2024-12-01",
+            "essentialVariable": "real estate"
+        },
+        {
+            "id": 25,
+            "name": "FBI",
+            "image": "FBI.png",
+            "shortDescription": "Logo for FBI.",
+            "longDescription": "This logo is used for FBI's corporate branding.",
+            "dateProjects": "2025-01-10",
+            "essentialVariable": "corporate"
+        }
+    ]
+}
