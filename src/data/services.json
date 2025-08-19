@@ -1,0 +1,52 @@
+[
+    {
+        "id": 5,
+        "name": "Cloud Solutions",
+        "description": "Cloud infrastructure setup and migration services",
+        "hero_image": null,
+        "short_description": null,
+        "features": "AWS/Azure Setup, Migration Services, DevOps, Monitoring",
+        "created_at": "2025-08-07T17:30:57.000000Z",
+        "updated_at": "2025-08-07T17:30:57.000000Z"
+    },
+    {
+        "id": 3,
+        "name": "Digital Marketing",
+        "description": "Comprehensive digital marketing strategies and campaigns",
+        "hero_image": "digital-marketing.jpg",
+        "short_description": null,
+        "features": "SEO Optimization, Social Media Marketing, PPC Campaigns, Analytics",
+        "created_at": "2025-08-07T17:30:57.000000Z",
+        "updated_at": "2025-08-07T17:30:57.000000Z"
+    },
+    {
+        "id": 2,
+        "name": "Mobile App Development",
+        "description": "Cross-platform mobile application development for iOS and Android",
+        "hero_image": null,
+        "short_description": null,
+        "features": "Native Performance, Cross-platform, App Store Publishing, Push Notifications",
+        "created_at": "2025-08-07T17:30:57.000000Z",
+        "updated_at": "2025-08-07T17:30:57.000000Z"
+    },
+    {
+        "id": 4,
+        "name": "UI/UX Design",
+        "description": "User-centered design for web and mobile applications",
+        "hero_image": null,
+        "short_description": null,
+        "features": "User Research, Wireframing, Prototyping, Design Systems",
+        "created_at": "2025-08-07T17:30:57.000000Z",
+        "updated_at": "2025-08-07T17:30:57.000000Z"
+    },
+    {
+        "id": 1,
+        "name": "Web Development",
+        "description": "Full-stack web application development using modern frameworks",
+        "hero_image": null,
+        "short_description": null,
+        "features": "Responsive Design, Progressive Web Apps, API Development, Database Design",
+        "created_at": "2025-08-07T17:30:57.000000Z",
+        "updated_at": "2025-08-07T17:30:57.000000Z"
+    }
+]

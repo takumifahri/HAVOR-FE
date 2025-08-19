@@ -4,13 +4,14 @@ import { useEffect, useState } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import axios from 'axios';
-export default function Navbar() {
+
+export default function NavbarNotFound() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
     const [activeMobileDropdown, setActiveMobileDropdown] = useState(null);
     const [hoverTimeout, setHoverTimeout] = useState(null);
     const [getNavigationItems, setNavigationItems] = useState([]);
+
     // Navigation data structure
     const getNavigationItem = async() => {
         try{
@@ -164,13 +165,6 @@ export default function Navbar() {
     ];
 
     // Event handlers
-    const handleScroll = () => {
-        const isScrolled = window.scrollY > 20;
-        if (isScrolled !== scrolled) {
-            setScrolled(isScrolled);
-        }
-    };
-
     const handleClickOutside = (event) => {
         const target = event.target;
         if (!target.closest('.dropdown-container') && !target.closest('.mega-menu')) {
@@ -217,25 +211,19 @@ export default function Navbar() {
 
     // Effects
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
         document.addEventListener('click', handleClickOutside);
-        handleScroll();
-
         return () => {
-            window.removeEventListener('scroll', handleScroll);
             document.removeEventListener('click', handleClickOutside);
         };
-    }, [scrolled]);
+    }, []);
 
-    // Style helpers
-    const getNavStyles = () => ({
-        nav: `sticky top-0 ${scrolled || activeDropdown ? 'bg-white text-gray-700' : 'bg-transparent text-white'} backdrop-blur-lg shadow-sm z-50 transition-colors duration-300`,
-        link: `${scrolled || activeDropdown ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-300'} text-lg font-medium transition duration-200`,
-        button: `${scrolled || activeDropdown ? 'text-gray-700' : 'text-white hover:text-gray-300'} p-2 transition duration-200`,
-        mobileButton: `${scrolled || activeDropdown ? 'text-gray-700' : 'text-white'} md:hidden p-2 hover:bg-gray-100 rounded-lg transition duration-300 cursor-pointer`
-    });
-
-    const styles = getNavStyles();
+    // Static styles - no scroll effects
+    const styles = {
+        nav: 'sticky top-0 bg-white text-gray-700 backdrop-blur-lg shadow-sm z-50',
+        link: 'text-gray-700 hover:text-gray-900 text-lg font-medium transition duration-200',
+        button: 'text-gray-700 hover:text-gray-900 p-2 transition duration-200',
+        mobileButton: 'text-gray-700 md:hidden p-2 hover:bg-gray-100 rounded-lg transition duration-300 cursor-pointer'
+    };
 
     // Render functions
     const renderDesktopNavItem = (item) => (
@@ -288,7 +276,6 @@ export default function Navbar() {
         </div>
     );
 
-    
     const renderMobileNavItem = (item) => (
         <div key={item.name} className="border-b border-gray-100 pb-4">
             <button
@@ -341,13 +328,14 @@ export default function Navbar() {
     useEffect(() => {
         getNavigationItem();
     }, []);
+
     return (
         <>
             {/* Main Navigation */}
             <nav className={styles.nav}>
                 <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center space-x-2 text-xl font-bold">
+                    <Link href="/" className="flex items-center space-x-2 text-xl font-bold text-gray-700">
                         HAVOR S.M
                     </Link>
 

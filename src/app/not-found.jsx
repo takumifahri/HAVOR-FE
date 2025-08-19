@@ -1,12 +1,12 @@
 
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import NavbarNotFound from "@/components/Navbar-NotFound";
 import Link from "next/link";
 
 export default function NotFound() {
     return (
         <>
-            
             <div className="flex flex-col items-center justify-center min-h-screen bg-base-100 px-4">
                 <div className="text-center max-w-md">
                     {/* 404 Number */}
@@ -48,7 +48,6 @@ export default function NotFound() {
                     </div>
                 </div>
             </div>
-            
         </>
     );
 }
