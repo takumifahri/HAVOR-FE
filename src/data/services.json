@@ -12,9 +12,9 @@
     {
         "id": 3,
         "name": "Digital Marketing",
-        "description": "Comprehensive digital marketing strategies and campaigns",
-        "hero_image": "digital-marketing.jpg",
-        "short_description": null,
+        "description": "Digital Marketing is a comprehensive service designed to help your business thrive in a competitive digital world. We offer a wide range of tailored digital marketing strategies and campaigns to meet your specific needs. Our services include search engine optimization (SEO), social media marketing, pay-per-click (PPC) campaigns, content marketing, and data analytics. Our team of experts will work closely with you to boost brand visibility, reach a wider audience, and drive significant conversions.\n\nThrough an integrated, data-driven approach, we ensure every campaign delivers measurable and effective results. We focus on your ROI (Return on Investment) and continuously monitor key metrics to optimize your strategy. By combining creativity and technology, we will help you build a strong online presence, foster customer loyalty, and ultimately achieve your business goals.",
+        "hero_image": null,
+        "short_description": "Comprehensive digital marketing strategies and campaigns",
         "features": "SEO Optimization, Social Media Marketing, PPC Campaigns, Analytics",
         "created_at": "2025-08-07T17:30:57.000000Z",
         "updated_at": "2025-08-07T17:30:57.000000Z"
@@ -42,9 +42,9 @@
     {
         "id": 1,
         "name": "Web Development",
-        "description": "Full-stack web application development using modern frameworks",
+        "description": "We specialize in full-stack web application development using modern frameworks to build comprehensive, high-performing digital solutions. Full-stack development is the art and science of building both the front end (what users see and interact with) and the back end (the server, database, and application logic that run behind the scenes) of a web application. This holistic approach ensures seamless integration, optimal performance, and a cohesive user experience from start to finish.",
         "hero_image": null,
-        "short_description": null,
+        "short_description": "Full-stack web application development using modern frameworks",
         "features": "Responsive Design, Progressive Web Apps, API Development, Database Design",
         "created_at": "2025-08-07T17:30:57.000000Z",
         "updated_at": "2025-08-07T17:30:57.000000Z"

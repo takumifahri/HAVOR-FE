@@ -7,6 +7,7 @@ import { MoveUpRight } from 'lucide-react';
 import Hero from '@/components/Landing/hero';
 import Clients from '@/components/Landing/clients';
 import VisiMisi from '@/components/Landing/Visi-Misi';
+import CoreServicePillars from '@/components/Landing/service-pillars';
 
 export default function Home() {
   useEffect(() => {
@@ -28,6 +29,9 @@ export default function Home() {
         {/* Strategic */}
         <section>
           <VisiMisi />
+        </section>
+        <section>
+          <CoreServicePillars />
         </section>
         {/* Clients Section */}
         <section>

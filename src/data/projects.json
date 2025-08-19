@@ -1,0 +1,48 @@
+{
+    "message": {
+        "success": true,
+        "service": {
+            "id": 1,
+            "name": "Web Development",
+            "short_description": "Full-stack web application development using modern frameworks"
+        },
+        "projects": [
+            {
+                "id": 2,
+                "title": "Website Company INACO",
+                "description": "Website resmi INACO (inacofood.com) sebagai pusat informasi produk, berita, dan profil perusahaan PT Niramas Utama.",
+                "content": "inacofood.com adalah website resmi dari PT Niramas Utama, produsen makanan dan minuman dengan merek INACO. Website ini dirancang untuk menjadi sumber informasi utama mengenai seluruh produk INACO, termasuk nata de coco, jelly, coconut drink, dan dessert sehat lainnya.\r\n\r\nPengunjung dapat menjelajahi berbagai fitur seperti:\r\n\r\nProfil Perusahaan: Mengenal sejarah, visi & misi, serta pencapaian INACO.\r\n\r\nProduk Lengkap: Daftar produk beserta deskripsi, kemasan, dan manfaat.\r\n\r\nBerita & Artikel: Informasi terbaru tentang kegiatan perusahaan, tips kesehatan, hingga inovasi produk.\r\n\r\nInformasi Distributor & Ekspor: Panduan bagi mitra bisnis atau calon distributor untuk menjalin kerja sama.\r\n\r\nKontak & Layanan Konsumen: Formulir kontak, lokasi kantor, dan kanal komunikasi resmi.\r\n\r\nWebsite ini juga responsif dan mudah diakses melalui perangkat mobile, dengan tampilan visual yang mencerminkan kesegaran dan kualitas produk INACO.",
+                "image_url": "http://127.0.0.1:8000/storage/projects/images/1754761540_zFwlmH5qsa.png",
+                "client_id": 4,
+                "client_name": "PT Niramas Utama",
+                "service_id": 1,
+                "project_date": "2024-08-24",
+                "status": "completed",
+                "created_at": "2025-08-09T17:45:40.000000Z",
+                "updated_at": "2025-08-09T17:45:40.000000Z",
+                "pivot": {
+                    "service_id": 1,
+                    "project_id": 2
+                }
+            },
+            {
+                "id": 1,
+                "title": "Aerofood POS Application",
+                "description": "Aplikasi POS (Point of Sale) untuk PT Aerofood ACS yang dirancang khusus untuk memudahkan proses transaksi, manajemen penjualan, dan pelaporan keuangan pada layanan catering dan makanan Aerofood. Web app ini mendukung integrasi menu, stok, user multi-level, dan laporan real-time.",
+                "content": "Copilot said: Tentu! Berikut contoh konten untuk field **Content**\r\nTentu! Berikut contoh konten untuk field Content yang cocok untuk artikel katalog project “Aerofood POS Application”.\r\n\r\nContent:\r\n\r\nAerofood POS Application adalah solusi Point of Sale berbasis web yang dikembangkan khusus untuk mendukung kebutuhan operasional PT Aerofood ACS dalam industri makanan dan catering. Sistem ini dirancang agar mudah diakses oleh berbagai divisi, mulai dari kasir hingga manajemen, sehingga proses transaksi penjualan dan pelaporan keuangan dapat berlangsung lebih efisien dan terintegrasi.\r\n\r\nDengan fitur manajemen menu, pengelolaan stok bahan baku, serta pelaporan harian dan bulanan, Aerofood POS Application membantu Aerofood ACS meningkatkan akurasi data, mempercepat proses bisnis, dan meminimalisir kesalahan manual. Sistem ini juga mendukung multi-user dan dapat disesuaikan dengan skala bisnis Aerofood ACS yang terus berkembang.\r\n\r\nProyek ini merupakan hasil kolaborasi tim Web Development yang berfokus pada keamanan, kemudahan penggunaan, serta fleksibilitas integrasi dengan layanan lain milik Aerofood ACS.",
+                "image_url": "http://127.0.0.1:8000/storage/projects/images/1754668542_E2CBenmION.png",
+                "client_id": 1,
+                "client_name": "PT Aerofood ACS",
+                "service_id": 1,
+                "project_date": "2025-07-24",
+                "status": "in_progress",
+                "created_at": "2025-08-07T17:35:39.000000Z",
+                "updated_at": "2025-08-08T15:55:42.000000Z",
+                "pivot": {
+                    "service_id": 1,
+                    "project_id": 1
+                }
+            }
+        ]
+    }
+}
