@@ -12,8 +12,8 @@ export default function Navbar() {
     const [hoverTimeout, setHoverTimeout] = useState(null);
     const [getNavigationItems, setNavigationItems] = useState([]);
     // Navigation data structure
-    const getNavigationItem = async() => {
-        try{
+    const getNavigationItem = async () => {
+        try {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/services/public`);
             console.log("Navigation items fetched successfully:", res.data);
             if (res.status === 200) {
@@ -22,7 +22,7 @@ export default function Navbar() {
                     name: service.name,
                     href: `/Services/${service.name.toLowerCase().replace(/\s+/g, '-')}`
                 }));
-                
+
                 const transformedNavItems = [
                     {
                         name: 'Expertises',
@@ -85,14 +85,14 @@ export default function Navbar() {
                         ]
                     }
                 ];
-                
+
                 setNavigationItems(transformedNavItems);
             }
-        } catch(error) {
+        } catch (error) {
             console.error("Error fetching navigation items:", error);
         }
     }
-    
+
     // Default navigation items in case API fails
     const navigationItems = [
         {
@@ -138,29 +138,29 @@ export default function Navbar() {
                 }
             ]
         },
-        {
-            name: 'About',
-            sections: [
-                {
-                    title: 'Company',
-                    items: [
-                        { name: 'Our Story', href: '/our-story' },
-                        { name: 'Mission & Vision', href: '/mission-vision' },
-                        { name: 'Our Team', href: '/team' },
-                        { name: 'Careers', href: '/careers' }
-                    ]
-                },
-                {
-                    title: 'Values',
-                    items: [
-                        { name: 'Innovation', href: '/innovation' },
-                        { name: 'Quality', href: '/quality' },
-                        { name: 'Partnership', href: '/partnership' },
-                        { name: 'Growth', href: '/growth' }
-                    ]
-                }
-            ]
-        }
+        // {
+        //     name: 'About',
+        //     sections: [
+        //         {
+        //             title: 'Company',
+        //             items: [
+        //                 { name: 'Our Story', href: '/our-story' },
+        //                 { name: 'Mission & Vision', href: '/mission-vision' },
+        //                 { name: 'Our Team', href: '/team' },
+        //                 { name: 'Careers', href: '/careers' }
+        //             ]
+        //         },
+        //         {
+        //             title: 'Values',
+        //             items: [
+        //                 { name: 'Innovation', href: '/innovation' },
+        //                 { name: 'Quality', href: '/quality' },
+        //                 { name: 'Partnership', href: '/partnership' },
+        //                 { name: 'Growth', href: '/growth' }
+        //             ]
+        //         }
+        //     ]
+        // }
     ];
 
     // Event handlers
@@ -288,7 +288,7 @@ export default function Navbar() {
         </div>
     );
 
-    
+
     const renderMobileNavItem = (item) => (
         <div key={item.name} className="border-b border-gray-100 pb-4">
             <button
@@ -354,6 +354,9 @@ export default function Navbar() {
                     {/* Desktop Navigation Links */}
                     <div className="hidden md:flex items-center space-x-8">
                         {navigationItems.map(renderDesktopNavItem)}
+                        <Link href="/About" className={styles.link}>
+                            About
+                        </Link>
                         <Link href="/blog" className={styles.link}>
                             Blog
                         </Link>
@@ -427,9 +430,16 @@ export default function Navbar() {
                     <div className="flex-1 px-6 py-8 overflow-y-auto">
                         <nav className="space-y-4">
                             {navigationItems.map(renderMobileNavItem)}
-                            <Link 
-                                href="/blog" 
-                                className="block text-gray-700 hover:text-[#3564A4] font-medium py-3 border-b border-gray-100" 
+                            <Link
+                                href="/About"
+                                className="block text-gray-700 hover:text-[#3564A4] font-medium py-3 border-b border-gray-100"
+                                onClick={closeMobileMenu}
+                            >
+                                About
+                            </Link>
+                            <Link
+                                href="/blog"
+                                className="block text-gray-700 hover:text-[#3564A4] font-medium py-3 border-b border-gray-100"
                                 onClick={closeMobileMenu}
                             >
                                 Blog
