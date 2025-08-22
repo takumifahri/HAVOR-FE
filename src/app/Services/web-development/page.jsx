@@ -434,47 +434,48 @@ export default function WebDevPage() {
                                     </motion.div>
 
                                     {/* Projects Grid */}
+                                    {/* Projects Grid */}
                                     {getProjects && getProjects.length > 0 ? (
-                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                             {getProjects.map((project, index) => (
                                                 <motion.div
                                                     key={project.id}
-                                                    className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
+                                                    className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
                                                     initial={{ opacity: 0, y: 30 }}
                                                     whileInView={{ opacity: 1, y: 0 }}
                                                     viewport={{ once: true }}
                                                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                                                    whileHover={{ y: -8 }}
+                                                    whileHover={{ y: -4 }}
                                                 >
                                                     {/* Project Image with Overlay */}
-                                                    <div className="relative h-64 overflow-hidden">
+                                                    <div className="relative h-48 overflow-hidden">
                                                         <Image
                                                             src={"/assets/Clients/Mahkota.jpeg"}
                                                             alt={project.title}
-                                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                                             layout="fill"
                                                             objectFit="cover"
                                                         />
 
                                                         {/* Dark Overlay */}
-                                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                                                         {/* Client Logo/Badge */}
-                                                        <div className="absolute top-4 left-4">
-                                                            <div className="bg-white/95 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
-                                                                <span className="text-sm font-semibold text-gray-800">
+                                                        <div className="absolute top-3 left-3">
+                                                            <div className="bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 shadow-md">
+                                                                <span className="text-xs font-medium text-gray-800">
                                                                     {project.client_name}
                                                                 </span>
                                                             </div>
                                                         </div>
 
                                                         {/* Status Badge */}
-                                                        <div className="absolute top-4 right-4">
-                                                            <div className={`px-3 py-1 rounded-full text-xs font-medium ${project.status === 'completed'
-                                                                ? 'bg-green-100 text-green-800 border border-green-200'
+                                                        <div className="absolute top-3 right-3">
+                                                            <div className={`px-2 py-1 rounded-full text-xs font-medium ${project.status === 'completed'
+                                                                ? 'bg-green-100 text-green-700'
                                                                 : project.status === 'in_progress'
-                                                                    ? 'bg-blue-100 text-blue-800 border border-blue-200'
-                                                                    : 'bg-gray-100 text-gray-800 border border-gray-200'
+                                                                    ? 'bg-blue-100 text-blue-700'
+                                                                    : 'bg-gray-100 text-gray-700'
                                                                 }`}>
                                                                 {project.status === 'completed' ? 'Completed' :
                                                                     project.status === 'in_progress' ? 'In Progress' :
@@ -483,53 +484,53 @@ export default function WebDevPage() {
                                                         </div>
 
                                                         {/* Hover Content */}
-                                                        <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                                                            <button className="w-full bg-white/90 backdrop-blur-sm text-[#3768AA] px-4 py-2 rounded-lg font-medium hover:bg-white transition-colors duration-200 flex items-center justify-center gap-2">
+                                                        <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                                                            <button className="w-full bg-white/90 backdrop-blur-sm text-[#3768AA] px-3 py-2 rounded-md text-sm font-medium hover:bg-white transition-colors duration-200 flex items-center justify-center gap-1">
                                                                 View Details
-                                                                <ChevronRight className="w-4 h-4" />
+                                                                <ChevronRight className="w-3 h-3" />
                                                             </button>
                                                         </div>
                                                     </div>
 
                                                     {/* Project Content */}
-                                                    <div className="p-6">
+                                                    <div className="p-4">
                                                         {/* Project Date */}
-                                                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                                                            <div className="w-1.5 h-1.5 bg-[#3768AA] rounded-full"></div>
+                                                        <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+                                                            <div className="w-1 h-1 bg-[#3768AA] rounded-full"></div>
                                                             {new Date(project.project_date).toLocaleDateString('en-US', {
                                                                 year: 'numeric',
-                                                                month: 'long',
+                                                                month: 'short',
                                                                 day: 'numeric'
                                                             })}
                                                         </div>
 
                                                         {/* Project Title */}
-                                                        <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#3768AA] transition-colors duration-200">
+                                                        <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-[#3768AA] transition-colors duration-200">
                                                             {project.title}
                                                         </h3>
 
                                                         {/* Project Description */}
-                                                        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-4">
+                                                        <p className="text-gray-600 text-xs leading-relaxed line-clamp-2 mb-3">
                                                             {project.description}
                                                         </p>
 
                                                         {/* Project Tags/Technologies */}
                                                         <div className="flex items-center justify-between">
                                                             <div className="flex items-center gap-2">
-                                                                <div className="w-8 h-8 bg-[#3768AA]/10 rounded-full flex items-center justify-center">
-                                                                    <Search className="w-4 h-4 text-[#3768AA]" />
+                                                                <div className="w-6 h-6 bg-[#3768AA]/10 rounded-full flex items-center justify-center">
+                                                                    <Search className="w-3 h-3 text-[#3768AA]" />
                                                                 </div>
-                                                                <span className="text-sm text-gray-600 font-medium">Web Development</span>
+                                                                <span className="text-xs text-gray-600 font-medium">Web Development</span>
                                                             </div>
 
                                                             <div className="text-[#3768AA] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                                                                <ChevronRight className="w-5 h-5" />
+                                                                <ChevronRight className="w-4 h-4" />
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     {/* Hover Border Effect */}
-                                                    <div className="absolute inset-0 rounded-2xl border-2 border-[#3768AA]/0 group-hover:border-[#3768AA]/20 transition-colors duration-300 pointer-events-none"></div>
+                                                    <div className="absolute inset-0 rounded-xl border-2 border-[#3768AA]/0 group-hover:border-[#3768AA]/20 transition-colors duration-300 pointer-events-none"></div>
                                                 </motion.div>
                                             ))}
                                         </div>

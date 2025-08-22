@@ -61,29 +61,29 @@ export default function Navbar() {
                             }
                         ]
                     },
-                    {
-                        name: 'About',
-                        sections: [
-                            {
-                                title: 'Company',
-                                items: [
-                                    { name: 'Our Story', href: '/our-story' },
-                                    { name: 'Mission & Vision', href: '/mission-vision' },
-                                    { name: 'Our Team', href: '/team' },
-                                    { name: 'Careers', href: '/careers' }
-                                ]
-                            },
-                            {
-                                title: 'Values',
-                                items: [
-                                    { name: 'Innovation', href: '/innovation' },
-                                    { name: 'Quality', href: '/quality' },
-                                    { name: 'Partnership', href: '/partnership' },
-                                    { name: 'Growth', href: '/growth' }
-                                ]
-                            }
-                        ]
-                    }
+                    // {
+                    //     name: 'About',
+                    //     sections: [
+                    //         {
+                    //             title: 'Company',
+                    //             items: [
+                    //                 { name: 'Our Story', href: '/our-story' },
+                    //                 { name: 'Mission & Vision', href: '/mission-vision' },
+                    //                 { name: 'Our Team', href: '/team' },
+                    //                 { name: 'Careers', href: '/careers' }
+                    //             ]
+                    //         },
+                    //         {
+                    //             title: 'Values',
+                    //             items: [
+                    //                 { name: 'Innovation', href: '/innovation' },
+                    //                 { name: 'Quality', href: '/quality' },
+                    //                 { name: 'Partnership', href: '/partnership' },
+                    //                 { name: 'Growth', href: '/growth' }
+                    //             ]
+                    //         }
+                    //     ]
+                    // }
                 ];
 
                 setNavigationItems(transformedNavItems);
@@ -354,7 +354,7 @@ export default function Navbar() {
                     {/* Desktop Navigation Links */}
                     <div className="hidden md:flex items-center space-x-8">
                         {navigationItems.map(renderDesktopNavItem)}
-                        <Link href="/About" className={styles.link}>
+                        <Link href="/about" className={styles.link}>
                             About
                         </Link>
                         <Link href="/blog" className={styles.link}>
@@ -431,7 +431,7 @@ export default function Navbar() {
                         <nav className="space-y-4">
                             {navigationItems.map(renderMobileNavItem)}
                             <Link
-                                href="/About"
+                                href="/about"
                                 className="block text-gray-700 hover:text-[#3564A4] font-medium py-3 border-b border-gray-100"
                                 onClick={closeMobileMenu}
                             >
