@@ -250,7 +250,7 @@ export default function ArticlePage({ params }) {
                 <div className="flex gap-12">
                     {/* Share Sidebar */}
                     <div className="hidden lg:block w-16 flex-shrink-0">
-                        <div className="sticky top-8">
+                        <div className="sticky top-24">
                             <div className="text-center mb-4">
                                 <span className="text-sm font-medium text-gray-600">Share</span>
                             </div>
