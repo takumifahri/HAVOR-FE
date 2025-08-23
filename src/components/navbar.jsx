@@ -357,7 +357,7 @@ export default function Navbar() {
                         <Link href="/about" className={styles.link}>
                             About
                         </Link>
-                        <Link href="/blog" className={styles.link}>
+                        <Link href="/article" className={styles.link}>
                             Blog
                         </Link>
                     </div>
@@ -438,7 +438,7 @@ export default function Navbar() {
                                 About
                             </Link>
                             <Link
-                                href="/blog"
+                                href="/article"
                                 className="block text-gray-700 hover:text-[#3564A4] font-medium py-3 border-b border-gray-100"
                                 onClick={closeMobileMenu}
                             >
