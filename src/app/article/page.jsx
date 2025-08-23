@@ -103,7 +103,7 @@ export default function ArticlePage() {
                             <div
                                 className="relative h-[60vh] md:h-[50vh] lg:h-[55vh] xl:h-[60vh] overflow-hidden flex items-center -mt-18"
                                 style={{
-                                    backgroundImage: `url("/assets/hero/about-hero.jpg")`,
+                                    backgroundImage: `url("/assets/hero/article.jpg")`,
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center'
                                 }}
@@ -113,7 +113,7 @@ export default function ArticlePage() {
 
                                 {/* Content Container */}
                                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                                    <div className="text-center">
+                                    <div className="text-left">
                                         <motion.p
                                             className="text-sm sm:text-base md:text-lg text-gray-200 mb-4"
                                             initial={{ opacity: 0, y: 30 }}
@@ -136,7 +136,7 @@ export default function ArticlePage() {
                                         </motion.h1>
 
                                         <motion.p
-                                            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 mb-6 sm:mb-8 leading-relaxed max-w-3xl mx-auto"
+                                            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 mb-6 sm:mb-8 leading-relaxed max-w-3xl"
                                             initial={{ opacity: 0, y: 30 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.8, delay: 0.2 }}
@@ -145,7 +145,7 @@ export default function ArticlePage() {
                                         </motion.p>
 
                                         <motion.div
-                                            className="flex items-center justify-center gap-6 text-sm text-gray-300"
+                                            className="flex items-center gap-6 text-sm text-gray-300"
                                             initial={{ opacity: 0, y: 30 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.8, delay: 0.4 }}
@@ -235,107 +235,100 @@ export default function ArticlePage() {
                                     <>
                                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                             {filteredArticles.map((article, index) => (
-                                                <motion.article
-                                                    key={article.id}
-                                                    className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
-                                                    initial={{ opacity: 0, y: 30 }}
-                                                    whileInView={{ opacity: 1, y: 0 }}
-                                                    viewport={{ once: true }}
-                                                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                                                    whileHover={{ y: -8 }}
-                                                >
-                                                    {/* Article Image */}
-                                                    <div className="relative h-48 overflow-hidden">
-                                                        <Image
-                                                            src={ "/assets/avatar.jpg"}
-                                                            alt={article.title}
-                                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                                            layout="fill"
-                                                            objectFit="cover"
-                                                        />
+                                                <Link href={`/article/${generateSlugFromTitle(article.title)}`} key={article.id}>
+                                                    <motion.article
+                                                        key={article.id}
+                                                        className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+                                                        initial={{ opacity: 0, y: 30 }}
+                                                        whileInView={{ opacity: 1, y: 0 }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                                                        whileHover={{ y: -8 }}
+                                                    >
+                                                        {/* Article Image */}
+                                                        <div className="relative h-48 overflow-hidden">
+                                                            <Image
+                                                                src={"/assets/avatar.jpg"}
+                                                                alt={article.title}
+                                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                                layout="fill"
+                                                                objectFit="cover"
+                                                            />
 
-                                                        {/* Overlay */}
-                                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                                            {/* Overlay */}
+                                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                                                        {/* Service Badge */}
-                                                        {article.service && (
-                                                            <div className="absolute top-3 left-3">
-                                                                <div className="bg-[#3768AA]/90 backdrop-blur-sm rounded-md px-2 py-1 shadow-md">
-                                                                    <span className="text-xs font-medium text-white">
-                                                                        {article.service.name}
-                                                                    </span>
+                                                            {/* Service Badge */}
+                                                            {article.service && (
+                                                                <div className="absolute top-3 left-3">
+                                                                    <div className="bg-[#3768AA]/90 backdrop-blur-sm rounded-md px-2 py-1 shadow-md">
+                                                                        <span className="text-xs font-medium text-white">
+                                                                            {article.service.name}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            )}
+
+                                                            {/* Industry Badge */}
+                                                            {article.industry && (
+                                                                <div className="absolute top-3 right-3">
+                                                                    <div className="bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 shadow-md">
+                                                                        <span className="text-xs font-medium text-gray-800">
+                                                                            {article.industry.name}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            )}
+                                                           
+                                                        </div>
+
+                                                        {/* Article Content */}
+                                                        <div className="p-6">
+                                                            {/* Article Meta */}
+                                                            <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
+                                                                <div className="flex items-center gap-1">
+                                                                    <Calendar className="w-3 h-3" />
+                                                                    <span>{formatDate(article.created_at)}</span>
+                                                                </div>
+                                                                <div className="flex items-center gap-1">
+                                                                    <User className="w-3 h-3" />
+                                                                    <span>{article.author}</span>
                                                                 </div>
                                                             </div>
-                                                        )}
 
-                                                        {/* Industry Badge */}
-                                                        {article.industry && (
-                                                            <div className="absolute top-3 right-3">
-                                                                <div className="bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 shadow-md">
-                                                                    <span className="text-xs font-medium text-gray-800">
-                                                                        {article.industry.name}
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        )}
-
-                                                        {/* Read More Button - UBAH BAGIAN INI */}
-                                                        <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                                                            {/* Article Title - JUGA BISA DIJADIKAN LINK */}
                                                             <Link href={`/article/${generateSlugFromTitle(article.title)}`}>
-                                                                <button className="w-full bg-white/90 backdrop-blur-sm text-[#3768AA] px-3 py-2 rounded-md text-sm font-medium hover:bg-white transition-colors duration-200 flex items-center justify-center gap-1">
-                                                                    Read Full Article
-                                                                    <ChevronRight className="w-3 h-3" />
-                                                                </button>
+                                                                <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#3768AA] transition-colors duration-200 cursor-pointer">
+                                                                    {article.title}
+                                                                </h3>
                                                             </Link>
-                                                        </div>
-                                                    </div>
 
-                                                    {/* Article Content */}
-                                                    <div className="p-6">
-                                                        {/* Article Meta */}
-                                                        <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
-                                                            <div className="flex items-center gap-1">
-                                                                <Calendar className="w-3 h-3" />
-                                                                <span>{formatDate(article.created_at)}</span>
-                                                            </div>
-                                                            <div className="flex items-center gap-1">
-                                                                <User className="w-3 h-3" />
-                                                                <span>{article.author}</span>
-                                                            </div>
-                                                        </div>
+                                                            {/* Article Description */}
+                                                            <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-4">
+                                                                {article.short_description}
+                                                            </p>
 
-                                                        {/* Article Title - JUGA BISA DIJADIKAN LINK */}
-                                                        <Link href={`/article/${generateSlugFromTitle(article.title)}`}>
-                                                            <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#3768AA] transition-colors duration-200 cursor-pointer">
-                                                                {article.title}
-                                                            </h3>
-                                                        </Link>
-
-                                                        {/* Article Description */}
-                                                        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-4">
-                                                            {article.short_description}
-                                                        </p>
-
-                                                        {/* Article Footer */}
-                                                        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                                                            <div className="flex items-center gap-2">
-                                                                <div className="w-8 h-8 bg-[#3768AA]/10 rounded-full flex items-center justify-center">
-                                                                    <BookOpen className="w-4 h-4 text-[#3768AA]" />
+                                                            {/* Article Footer */}
+                                                            <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                                                                <div className="flex items-center gap-2">
+                                                                    <div className="w-8 h-8 bg-[#3768AA]/10 rounded-full flex items-center justify-center">
+                                                                        <BookOpen className="w-4 h-4 text-[#3768AA]" />
+                                                                    </div>
+                                                                    <span className="text-xs text-gray-600 font-medium">Article</span>
                                                                 </div>
-                                                                <span className="text-xs text-gray-600 font-medium">Article</span>
+
+                                                                <Link href={`/article/${generateSlugFromTitle(article.title)}`}>
+                                                                    <div className="text-[#3768AA] opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer">
+                                                                        <ChevronRight className="w-5 h-5" />
+                                                                    </div>
+                                                                </Link>
                                                             </div>
-
-                                                            <Link href={`/article/${generateSlugFromTitle(article.title)}`}>
-                                                                <div className="text-[#3768AA] opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer">
-                                                                    <ChevronRight className="w-5 h-5" />
-                                                                </div>
-                                                            </Link>
                                                         </div>
-                                                    </div>
 
-                                                    {/* Hover Border Effect */}
-                                                    <div className="absolute inset-0 rounded-xl border-2 border-[#3768AA]/0 group-hover:border-[#3768AA]/20 transition-colors duration-300 pointer-events-none"></div>
-                                                </motion.article>
+                                                        {/* Hover Border Effect */}
+                                                        <div className="absolute inset-0 rounded-xl border-2 border-[#3768AA]/0 group-hover:border-[#3768AA]/20 transition-colors duration-300 pointer-events-none"></div>
+                                                    </motion.article>
+                                                </Link>
                                             ))}
                                         </div>
 
