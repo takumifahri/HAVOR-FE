@@ -12,6 +12,7 @@ import Image from 'next/image';
 export default function WebDevPage() {
     const [data, setData] = useState(null);
     const [getProjects, setGetProjects] = useState([]);
+    const [getArticles, setGetArticles] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const getData = async () => {
@@ -55,6 +56,26 @@ export default function WebDevPage() {
         }
     };
 
+    const getArticleData = async (serviceId) => {
+        try {
+            console.log('Fetching articles for service ID:', serviceId);
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/services/public/${serviceId}/articles`);
+            console.log('Web Development Articles Response:', response.data);
+
+            // Handle different response structures
+            if (response.data && response.data.articles && Array.isArray(response.data.articles)) {
+                setGetArticles(response.data.articles);
+            } else if (Array.isArray(response.data)) {
+                setGetArticles(response.data);
+            } else {
+                console.log('No articles found in response');
+                setGetArticles([]);
+            }
+        } catch (error) {
+            console.error('Error fetching articles:', error);
+            setGetArticles([]);
+        }
+    };
     useEffect(() => {
         getData();
         AOS.init({
@@ -63,6 +84,13 @@ export default function WebDevPage() {
             once: true,
         });
     }, []);
+
+    // Call getArticleData when data is available and has an ID
+    useEffect(() => {
+        if (data && data.id) {
+            getArticleData(data.id);
+        }
+    }, [data]);
     // Add this function before the return statement
     const parseFeatures = (featuresString) => {
         if (!featuresString) return [];
@@ -533,7 +561,10 @@ export default function WebDevPage() {
                                                     <div className="absolute inset-0 rounded-xl border-2 border-[#3768AA]/0 group-hover:border-[#3768AA]/20 transition-colors duration-300 pointer-events-none"></div>
                                                 </motion.div>
                                             ))}
+
                                         </div>
+
+
                                     ) : (
                                         <motion.div
                                             className="text-center py-12"
@@ -547,6 +578,133 @@ export default function WebDevPage() {
                                             </div>
                                             <h3 className="text-lg font-medium text-gray-900 mb-2">No Projects Found</h3>
                                             <p className="text-gray-600">Projects for this service will be displayed here once available.</p>
+                                        </motion.div>
+                                    )}
+                                </div>
+
+                            </section>
+                            <section>
+                                <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+                                    <motion.div
+                                        className="text-left mb-7 lg:mb-9"
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.8 }}
+                                    >
+                                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium text-gray-900 mb-4">
+                                            Related Articles
+                                        </h2>
+                                    </motion.div>
+
+                                    {/* Articles Grid */}
+                                    {getArticles && getArticles.length > 0 ? (
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                            {getArticles.map((article, index) => (
+                                                <motion.div
+                                                    key={article.id}
+                                                    className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+                                                    initial={{ opacity: 0, y: 30 }}
+                                                    whileInView={{ opacity: 1, y: 0 }}
+                                                    viewport={{ once: true }}
+                                                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                                                    whileHover={{ y: -4 }}
+                                                >
+                                                    {/* Article Image with Overlay */}
+                                                    <div className="relative h-48 overflow-hidden">
+                                                        <Image
+                                                            src={"/assets/avatar.jpg"}
+                                                            alt={article.title}
+                                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                            layout="fill"
+                                                            objectFit="cover"
+                                                        />
+
+                                                        {/* Dark Overlay */}
+                                                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                                                        {/* Author Badge */}
+                                                        <div className="absolute top-3 left-3">
+                                                            <div className="bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 shadow-md">
+                                                                <span className="text-xs font-medium text-gray-800">
+                                                                    {article.author}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Article Category Badge */}
+                                                        <div className="absolute top-3 right-3">
+                                                            <div className="bg-[#3768AA]/90 backdrop-blur-sm rounded-md px-2 py-1 shadow-md">
+                                                                <span className="text-xs font-medium text-white">
+                                                                    Article
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Hover Content */}
+                                                        <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                                                            <button className="w-full bg-white/90 backdrop-blur-sm text-[#3768AA] px-3 py-2 rounded-md text-sm font-medium hover:bg-white transition-colors duration-200 flex items-center justify-center gap-1">
+                                                                Read Article
+                                                                <ChevronRight className="w-3 h-3" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Article Content */}
+                                                    <div className="p-4">
+                                                        {/* Article Date */}
+                                                        <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+                                                            <div className="w-1 h-1 bg-[#3768AA] rounded-full"></div>
+                                                            {new Date(article.created_at).toLocaleDateString('en-US', {
+                                                                year: 'numeric',
+                                                                month: 'short',
+                                                                day: 'numeric'
+                                                            })}
+                                                        </div>
+
+                                                        {/* Article Title */}
+                                                        <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-[#3768AA] transition-colors duration-200">
+                                                            {article.title}
+                                                        </h3>
+
+                                                        {/* Article Short Description */}
+                                                        <p className="text-gray-600 text-xs leading-relaxed line-clamp-2 mb-3">
+                                                            {article.short_description}
+                                                        </p>
+
+                                                        {/* Article Meta */}
+                                                        <div className="flex items-center justify-between">
+                                                            <div className="flex items-center gap-2">
+                                                                <div className="w-6 h-6 bg-[#3768AA]/10 rounded-full flex items-center justify-center">
+                                                                    <Search className="w-3 h-3 text-[#3768AA]" />
+                                                                </div>
+                                                                <span className="text-xs text-gray-600 font-medium">By {article.author}</span>
+                                                            </div>
+
+                                                            <div className="text-[#3768AA] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                                                <ChevronRight className="w-4 h-4" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Hover Border Effect */}
+                                                    <div className="absolute inset-0 rounded-xl border-2 border-[#3768AA]/0 group-hover:border-[#3768AA]/20 transition-colors duration-300 pointer-events-none"></div>
+                                                </motion.div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <motion.div
+                                            className="text-center py-12"
+                                            initial={{ opacity: 0 }}
+                                            whileInView={{ opacity: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.8 }}
+                                        >
+                                            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                                <Search className="w-8 h-8 text-gray-400" />
+                                            </div>
+                                            <h3 className="text-lg font-medium text-gray-900 mb-2">No Articles Found</h3>
+                                            <p className="text-gray-600">Articles for this service will be displayed here once available.</p>
                                         </motion.div>
                                     )}
                                 </div>
