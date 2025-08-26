@@ -8,6 +8,7 @@ import Hero from '@/components/Landing/hero';
 import Clients from '@/components/Landing/clients';
 import VisiMisi from '@/components/Landing/Visi-Misi';
 import CoreServicePillars from '@/components/Landing/service-pillars';
+import ProjectsLanding from '@/components/Landing/projects';
 
 export default function Home() {
   useEffect(() => {
@@ -36,6 +37,10 @@ export default function Home() {
         {/* Clients Section */}
         <section>
           <Clients />
+        </section>
+        {/* Projedt yg udah pernah */}
+        <section>
+          <ProjectsLanding  />
         </section>
       </main>
       {/* <Footer /> */}

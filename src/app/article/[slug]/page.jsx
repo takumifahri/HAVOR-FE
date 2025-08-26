@@ -96,6 +96,7 @@ export default function ArticlePage({ params }) {
 
     const getArticleBySlug = async () => {
         try {
+            setLoading(true);
             // Step 1: Fetch semua articles untuk mencari yang sesuai dengan slug
             const allArticlesRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/articles/public`);
             console.log('All Articles Response:', allArticlesRes.data);
@@ -224,10 +225,10 @@ export default function ArticlePage({ params }) {
 
     if (error || !articleData) {
         return (
-            <div className="flex flex-col justify-center items-center h-screen">
-                <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
-                <p className="text-gray-600 mb-6">The article you're looking for doesn't exist or has been moved.</p>
-                <Link href="/article" className="px-6 py-3 bg-[#3768AA] text-white rounded-md hover:bg-[#3564A4] transition-colors duration-200">
+            <div className="flex flex-col justify-center items-center h-screen px-4">
+                <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 text-center">Article Not Found</h1>
+                <p className="text-gray-600 mb-6 text-center text-sm sm:text-base">The article you're looking for doesn't exist or has been moved.</p>
+                <Link href="/article" className="px-4 sm:px-6 py-2 sm:py-3 bg-[#3768AA] text-white rounded-md hover:bg-[#3564A4] transition-colors duration-200 text-sm sm:text-base">
                     Back to Articles
                 </Link>
             </div>
@@ -236,8 +237,8 @@ export default function ArticlePage({ params }) {
 
     return (
         <main className="min-h-screen bg-white">
-            {/* Header/Breadcrumb */}
-            <div className="bg-white py-4">
+            {/* Header/Breadcrumb - Mobile Responsive */}
+            <div className="bg-white py-3 sm:py-4 border-b border-gray-100">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <Link href="/article" className="inline-flex items-center text-sm text-gray-600 hover:text-[#3768AA] transition-colors duration-200">
                         <ArrowLeft className="w-4 h-4 mr-1" />
@@ -246,9 +247,9 @@ export default function ArticlePage({ params }) {
                 </div>
             </div>
 
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <div className="flex gap-12">
-                    {/* Share Sidebar */}
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
+                <div className="flex flex-col lg:flex-row gap-6 lg:gap-12">
+                    {/* Share Sidebar - Desktop Only */}
                     <div className="hidden lg:block w-16 flex-shrink-0">
                         <div className="sticky top-24">
                             <div className="text-center mb-4">
@@ -313,58 +314,10 @@ export default function ArticlePage({ params }) {
 
                     {/* Main Content */}
                     <div className="flex-1 max-w-4xl">
-                        {/* Hero Section dengan Title dan Image */}
-                        <div className="flex gap-8 mb-8">
-                            {/* Left Content - Title & Meta */}
-                            <div className="flex-1">
-                                {/* Date */}
-                                <div className="text-sm text-gray-500 mb-2">
-                                    {formatDate(articleData.created_at)}
-                                </div>
-
-                                {/* Author & Editor Info */}
-                                <div className="text-sm text-gray-600 mb-6">
-                                    <span>Penulis {articleData.author}</span>
-                                    <br />
-                                    <span>Editor {articleData.author} (Copywriter)</span>
-                                </div>
-
-                                {/* Title */}
-                                <motion.h1
-                                    className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.6 }}
-                                >
-                                    {articleData.title}
-                                </motion.h1>
-
-                                {/* Tags */}
-                                <motion.div
-                                    className="grid grid-cols-1 gap-4 mb-8"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.6, delay: 0.2 }}
-                                >
-                                    <div>
-                                        <span className="text-sm font-medium text-gray-600 mr-2">Industry</span>
-                                        <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-md text-sm font-medium">
-                                            {articleData.industry?.name || 'Materials'}
-                                        </span>
-                                    </div>
-                                    {articleData.service && (
-                                        <div>
-                                            <span className="text-sm font-medium text-gray-600 mr-2">Expertises</span>
-                                            <span className="px-3 py-1 bg-green-100 text-green-800 rounded-md text-sm font-medium">
-                                                {articleData.service.name}
-                                            </span>
-                                        </div>
-                                    )}
-                                </motion.div>
-                            </div>
-
-                            {/* Right Content - Hero Image */}
-                            <div className="w-80 h-80 flex-shrink-0">
+                        {/* Hero Section - Mobile Responsive */}
+                        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 mb-6 lg:mb-8">
+                            {/* Hero Image - Show first on mobile */}
+                            <div className="w-full lg:w-80 h-48 sm:h-64 lg:h-80 flex-shrink-0 order-1 lg:order-2">
                                 <motion.div
                                     className="relative w-full h-full rounded-lg overflow-hidden"
                                     initial={{ opacity: 0, scale: 0.95 }}
@@ -372,7 +325,7 @@ export default function ArticlePage({ params }) {
                                     transition={{ duration: 0.6, delay: 0.3 }}
                                 >
                                     <Image
-                                        src={'/assets/avatar.jpg'}
+                                        src={"/assets/avatar.jpg"}
                                         alt={articleData.title}
                                         fill
                                         style={{ objectFit: 'cover' }}
@@ -384,6 +337,54 @@ export default function ArticlePage({ params }) {
                                     />
                                 </motion.div>
                             </div>
+
+                            {/* Title & Meta - Show second on mobile */}
+                            <div className="flex-1 order-2 lg:order-1">
+                                {/* Date */}
+                                <div className="text-xs sm:text-sm text-gray-500 mb-2">
+                                    {formatDate(articleData.created_at)}
+                                </div>
+
+                                {/* Author & Editor Info */}
+                                <div className="text-xs sm:text-sm text-gray-600 mb-4 lg:mb-6">
+                                    <span>Penulis {articleData.author}</span>
+                                    <br />
+                                    <span>Editor {articleData.author} (Copywriter)</span>
+                                </div>
+
+                                {/* Title - Responsive sizing */}
+                                <motion.h1
+                                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6 }}
+                                >
+                                    {articleData.title}
+                                </motion.h1>
+
+                                {/* Tags - Mobile optimized */}
+                                <motion.div
+                                    className="space-y-2 sm:space-y-3 mb-6 lg:mb-8"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.2 }}
+                                >
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        <span className="text-xs sm:text-sm font-medium text-gray-600">Industry</span>
+                                        <span className="px-2 sm:px-3 py-1 bg-blue-100 text-blue-800 rounded-md text-xs sm:text-sm font-medium">
+                                            {articleData.industry?.name || 'Materials'}
+                                        </span>
+                                    </div>
+                                    {articleData.service && (
+                                        <div className="flex flex-wrap items-center gap-2">
+                                            <span className="text-xs sm:text-sm font-medium text-gray-600">Expertises</span>
+                                            <span className="px-2 sm:px-3 py-1 bg-green-100 text-green-800 rounded-md text-xs sm:text-sm font-medium">
+                                                {articleData.service.name}
+                                            </span>
+                                        </div>
+                                    )}
+                                </motion.div>
+                            </div>
                         </div>
 
                         {/* Mobile Share Buttons */}
@@ -391,89 +392,90 @@ export default function ArticlePage({ params }) {
                             <div className="flex items-center gap-2 flex-wrap">
                                 <span className="text-sm font-medium text-gray-600 mr-2">Share:</span>
                                 <button
-                                    className="px-3 py-1 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-colors duration-200 text-sm flex items-center gap-1"
+                                    className="px-2 sm:px-3 py-1 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-colors duration-200 text-xs sm:text-sm flex items-center gap-1"
                                     onClick={copyToClipboard}
                                 >
                                     <Copy className="w-3 h-3" />
-                                    Copy
+                                    <span className="hidden xs:inline">Copy</span>
                                 </button>
                                 <button
-                                    className="px-3 py-1 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors duration-200 text-sm flex items-center gap-1"
+                                    className="px-2 sm:px-3 py-1 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors duration-200 text-xs sm:text-sm flex items-center gap-1"
                                     onClick={shareToWhatsApp}
                                 >
                                     <MessageCircle className="w-3 h-3" />
-                                    WhatsApp
+                                    <span className="hidden xs:inline">WhatsApp</span>
                                 </button>
                                 <button
-                                    className="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200 text-sm flex items-center gap-1"
+                                    className="px-2 sm:px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200 text-xs sm:text-sm flex items-center gap-1"
                                     onClick={shareToFacebook}
                                 >
                                     <Facebook className="w-3 h-3" />
-                                    Facebook
+                                    <span className="hidden xs:inline">Facebook</span>
                                 </button>
                                 <button
-                                    className="px-3 py-1 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors duration-200 text-sm flex items-center gap-1"
+                                    className="px-2 sm:px-3 py-1 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors duration-200 text-xs sm:text-sm flex items-center gap-1"
                                     onClick={nativeShare}
                                 >
                                     <Share2 className="w-3 h-3" />
-                                    More
+                                    <span className="hidden xs:inline">More</span>
                                 </button>
                             </div>
                         </div>
 
-                        {/* Article Content */}
+                        {/* Article Content - Mobile optimized */}
                         <motion.div
-                            className="prose prose-lg max-w-none"
+                            className="prose prose-sm sm:prose lg:prose-lg max-w-none"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
                         >
                             <div
-                                className="text-gray-700 leading-relaxed space-y-6"
+                                className="text-gray-700 leading-relaxed space-y-4 sm:space-y-6"
                                 style={{
-                                    fontSize: '1.1rem',
-                                    lineHeight: '1.8'
+                                    fontSize: '0.9rem',
+                                    lineHeight: '1.7'
                                 }}
                                 dangerouslySetInnerHTML={{
                                     __html: articleData.content
-                                        .replace(/\r\n\r\n/g, '</p><p class="mb-6">')
+                                        .replace(/\r\n\r\n/g, '</p><p class="mb-4 sm:mb-6">')
                                         .replace(/\r\n/g, '<br>')
-                                        .replace(/^/, '<p class="mb-6">')
+                                        .replace(/^/, '<p class="mb-4 sm:mb-6">')
                                         .replace(/$/, '</p>')
                                 }}
                             />
                         </motion.div>
 
-
-                        {/* Related Articles by Industry */}
+                        {/* Related Articles by Industry - Mobile optimized */}
                         {relatedArticlesByIndustry.length > 0 ? (
                             <motion.div
-                                className="mt-16"
+                                className="mt-12 sm:mt-16"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.6 }}
                             >
-                                <h2 className="text-2xl font-bold text-gray-900 mb-8">Related Articles To {articleData.industry?.name} Industry</h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">
+                                    Related Articles To {articleData.industry?.name} Industry
+                                </h2>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                                     {relatedArticlesByIndustry.map((article) => (
                                         <Link
                                             key={article.id}
                                             href={`/article/${generateSlugFromTitle(article.title)}`}
                                             className="group cursor-pointer"
                                         >
-                                            <div className="aspect-w-16 aspect-h-9 mb-4">
+                                            <div className="aspect-w-16 aspect-h-9 mb-3 sm:mb-4">
                                                 <Image
-                                                    src={'/assets/avatar.jpg'}
+                                                    src={"/assets/avatar.jpg"}
                                                     alt={article.title}
                                                     className="w-full h-32 object-cover rounded-lg"
                                                     width={300}
                                                     height={128}
                                                 />
                                             </div>
-                                            <h3 className="font-semibold text-sm text-gray-900 mb-2 line-clamp-2 group-hover:text-[#3768AA] transition-colors">
+                                            <h3 className="font-semibold text-sm sm:text-base text-gray-900 mb-2 line-clamp-2 group-hover:text-[#3768AA] transition-colors">
                                                 {article.title}
                                             </h3>
-                                            <p className="text-xs text-gray-600 line-clamp-2">
+                                            <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
                                                 {article.short_description}
                                             </p>
                                         </Link>
@@ -482,54 +484,58 @@ export default function ArticlePage({ params }) {
                             </motion.div>
                         ) : (
                             <motion.div
-                                className="mt-16"
+                                className="mt-12 sm:mt-16"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.6 }}
                             >
-                                <h2 className="text-2xl font-bold text-gray-900 mb-8">Related Articles To {articleData.industry?.name} Industry</h2>
-                                <div className="bg-gray-50 rounded-lg p-8 text-center">
+                                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">
+                                    Related Articles To {articleData.industry?.name} Industry
+                                </h2>
+                                <div className="bg-gray-50 rounded-lg p-6 sm:p-8 text-center">
                                     <div className="text-gray-400 mb-4">
-                                        <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-12 sm:w-16 h-12 sm:h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                         </svg>
                                     </div>
-                                    <p className="text-gray-600 text-lg">
+                                    <p className="text-gray-600 text-sm sm:text-base lg:text-lg">
                                         Sorry, there's no more articles that related to <span className="font-semibold">{articleData.industry?.name}</span> industry.
                                     </p>
                                 </div>
                             </motion.div>
                         )}
 
-                        {/* Related Articles by Service */}
+                        {/* Related Articles by Service - Mobile optimized */}
                         {relatedArticlesByService.length > 0 ? (
                             <motion.div
-                                className="mt-16"
+                                className="mt-12 sm:mt-16"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.8 }}
                             >
-                                <h2 className="text-2xl font-bold text-gray-900 mb-8">Related Articles To {articleData.service?.name}</h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">
+                                    Related Articles To {articleData.service?.name}
+                                </h2>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                                     {relatedArticlesByService.map((article) => (
                                         <Link
                                             key={article.id}
                                             href={`/article/${generateSlugFromTitle(article.title)}`}
                                             className="group cursor-pointer"
                                         >
-                                            <div className="aspect-w-16 aspect-h-9 mb-4">
+                                            <div className="aspect-w-16 aspect-h-9 mb-3 sm:mb-4">
                                                 <Image
-                                                    src={'/assets/avatar.jpg'}
+                                                    src={"/assets/avatar.jpg"}
                                                     alt={article.title}
                                                     className="w-full h-32 object-cover rounded-lg"
                                                     width={300}
                                                     height={128}
                                                 />
                                             </div>
-                                            <h3 className="font-semibold text-sm text-gray-900 mb-2 line-clamp-2 group-hover:text-[#3768AA] transition-colors">
+                                            <h3 className="font-semibold text-sm sm:text-base text-gray-900 mb-2 line-clamp-2 group-hover:text-[#3768AA] transition-colors">
                                                 {article.title}
                                             </h3>
-                                            <p className="text-xs text-gray-600 line-clamp-2">
+                                            <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
                                                 {article.short_description}
                                             </p>
                                         </Link>
@@ -538,25 +544,26 @@ export default function ArticlePage({ params }) {
                             </motion.div>
                         ) : (
                             <motion.div
-                                className="mt-16"
+                                className="mt-12 sm:mt-16"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.8 }}
                             >
-                                <h2 className="text-2xl font-bold text-gray-900 mb-8">Related Articles To {articleData.service?.name}</h2>
-                                <div className="bg-gray-50 rounded-lg p-8 text-center">
+                                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">
+                                    Related Articles To {articleData.service?.name}
+                                </h2>
+                                <div className="bg-gray-50 rounded-lg p-6 sm:p-8 text-center">
                                     <div className="text-gray-400 mb-4">
-                                        <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-12 sm:w-16 h-12 sm:h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                         </svg>
                                     </div>
-                                    <p className="text-gray-600 text-lg">
+                                    <p className="text-gray-600 text-sm sm:text-base lg:text-lg">
                                         Sorry, there's no more articles that related to <span className="font-semibold">{articleData.service?.name}</span> service.
                                     </p>
                                 </div>
                             </motion.div>
                         )}
-
                     </div>
                 </div>
             </div>
