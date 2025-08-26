@@ -99,10 +99,10 @@ export default function ProjectPage({ params }) {
     const getDummyDocumentation = () => {
         return [
             "/assets/Clients/alfamart.png",
-            "/assets/Clients/alfamart.png",
-            "/assets/Clients/alfamart.png",
-            "/assets/Clients/alfamart.png",
-            "/assets/Clients/alfamart.png"
+            "/assets/Clients/FBI.png",
+            "/assets/Clients/tma.png",
+            "/assets/Clients/trigraha.png",
+            "/assets/Clients/sinarmas.png"
         ];
     };
 
