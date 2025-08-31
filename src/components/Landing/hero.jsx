@@ -17,7 +17,7 @@ export default function Hero() {
         <>
             {/* Hero Section */}
             <div
-                className="relative min-h-[100dvh] overflow-hidden -mt-18"
+                className="relative min-h-[65dvh] overflow-hidden -mt-18"
                 style={{
                     backgroundImage: `url(/assets/wpp.svg)`,
                     backgroundSize: 'cover',
@@ -30,7 +30,7 @@ export default function Hero() {
                     <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
                         {/* Left Content */}
                         <div className="text-left">
-                            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6">
+                            <h1 className="text-xl lg:text-2xl xl:text-6xl font-bold text-white mb-6">
                                 Unlock Your Business Potential with Digital Transformation
                             </h1>
                             <p className="text-xl text-white mb-8 max-w-2xl">
@@ -66,7 +66,7 @@ export default function Hero() {
                     </div>
 
                     {/* Mobile Layout */}
-                    <div className="lg:hidden flex flex-col min-h-[90vh] pt-8">
+                    <div className="lg:hidden flex flex-col min-h-[80dvh] pt-8">
                         {/* Mobile Laptop Image */}
                         <div
                             className="flex justify-center mt-14 mb-2"
@@ -107,25 +107,25 @@ export default function Hero() {
                     {/* Desktop Stats */}
                     <div className="hidden lg:grid lg:grid-cols-4 gap-4 xl:gap-8 -mt-3 xl:-mt-5">
                         <div className="text-center space-y-1">
-                            <div className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-white">
+                            <div className="text-xl xl:text-2xl 2xl:text-4xl font-bold text-white">
                                 <CountUp end={2010} duration={2} />
                             </div>
                             <div className="text-white text-sm xl:text-base">Stand since</div>
                         </div>
                         <div className="text-center space-y-1">
-                            <div className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-white">
+                            <div className="text-xl xl:text-2xl 2xl:text-4xl font-bold text-white">
                                 <CountUp end={900} duration={2} suffix="+" />
                             </div>
                             <div className="text-white text-sm xl:text-base">Digital Projects</div>
                         </div>
                         <div className="text-center space-y-1">
-                            <div className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-white">
+                            <div className="text-xl xl:text-2xl 2xl:text-4xl font-bold text-white">
                                 <CountUp end={150} duration={2} suffix="+" />
                             </div>
                             <div className="text-white text-sm xl:text-base">Satisfied Clients</div>
                         </div>
                         <div className="text-center space-y-1">
-                            <div className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-white">
+                            <div className="text-xl xl:text-2xl 2xl:text-4xl font-bold text-white">
                                 <CountUp end={200} duration={2} suffix="+" />
                             </div>
                             <div className="text-white text-sm xl:text-base">Digital Experts</div>

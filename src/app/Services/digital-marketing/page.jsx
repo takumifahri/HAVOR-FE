@@ -217,7 +217,7 @@ export default function DigitalMarketingPage() {
                                             return (
                                                 <motion.div
                                                     key={index}
-                                                    className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#3768AA]/20"
+                                                    className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-[#3768AA]/20"
                                                     initial={{ opacity: 0, y: 30 }}
                                                     whileInView={{ opacity: 1, y: 0 }}
                                                     viewport={{ once: true }}

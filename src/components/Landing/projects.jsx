@@ -196,7 +196,7 @@ export default function ProjectsSection() {
                         transition={{ duration: 0.6, ease: "easeOut" }}
                     >
                         <Image
-                            src={"/assets/avatar.jpg"}
+                            src={getCleanImageUrl(project.image_url) || "/assets/avatar.jpg"}
                             alt={project.title}
                             fill
                             style={{ objectFit: 'cover' }}
@@ -211,7 +211,7 @@ export default function ProjectsSection() {
                     {/* Client Logo Badge - Fixed positioning and z-index */}
                     <div className="absolute top-4 left-0 bg-white rounded-r-lg p-2 shadow-sm w-[4rem] flex items-center justify-center" style={{ zIndex: 10 }}>
                         <img
-                            src={"/assets/Clients/alfamart.png"}
+                            src={`${getCleanImageUrl(project.client.icon_url)}`}
                             alt={`${project.client_name} logo`}
                             className="w-8 h-8 object-contain"
                             onError={(e) => {
@@ -223,7 +223,7 @@ export default function ProjectsSection() {
                     <div className="absolute top-4 right-2 bg-white rounded-full p-2 shadow-sm flex items-center justify-center" style={{ zIndex: 10 }}>
                         {checkStatusProject(project)}
                     </div>
-                    
+
                     {/* Gradient Overlay */}
                     <motion.div
                         className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-5"
@@ -311,12 +311,12 @@ export default function ProjectsSection() {
     if (error) return <ErrorComponent />;
 
     return (
-        <main className="min-h-screen bg-background">
+        <main className="bg-background">
             <motion.section
-                className="py-16 px-4 max-w-7xl mx-auto"
+                className=" py-16 lg:py-24  px-4 max-w-7xl mx-auto"
                 variants={containerVariants}
                 initial="hidden"
-                whileInView="visible"
+                animate="visible"
                 viewport={{ once: true, amount: 0.1 }}
             >
                 {/* Header */}
@@ -324,15 +324,14 @@ export default function ProjectsSection() {
                     className="text-center mb-16"
                     variants={itemVariants}
                 >
-                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground mb-4">
+                    <h1 className="text-2xl md:text-2xl lg:text-3xl font-semibold text-foreground mb-4 uppercase">
                         Driving Tangible Results for Leading Enterprises
                     </h1>
                     <motion.div
                         className="w-24 h-1 bg-gradient-to-r from-[#525254] to-[#3564A4] mx-auto rounded-full"
                         initial={{ width: 0 }}
-                        whileInView={{ width: 96 }}
+                        animate={{ width: 96 }}
                         transition={{ duration: 0.8, delay: 0.3 }}
-                        viewport={{ once: true }}
                     />
                 </motion.div>
 
@@ -341,6 +340,8 @@ export default function ProjectsSection() {
                     <motion.div
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                         variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
                     >
                         {projects.map((project, index) => (
                             <Link

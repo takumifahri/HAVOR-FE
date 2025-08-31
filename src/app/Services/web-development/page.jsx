@@ -456,7 +456,7 @@ export default function WebDevPage() {
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.8 }}
                                     >
-                                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium text-gray-900 mb-4">
+                                        <h2 className="text-xl sm:text-xl md:text-2xl lg:text-3xl font-medium text-gray-900 mb-4">
                                             Our History Projects.
                                         </h2>
                                     </motion.div>
@@ -489,8 +489,8 @@ export default function WebDevPage() {
                                                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                                                         {/* Client Logo/Badge */}
-                                                        <div className="absolute top-3 left-3">
-                                                            <div className="bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 shadow-md">
+                                                        <div className="absolute top-3 left-0">
+                                                            <div className="bg-white/90 backdrop-blur-sm rounded-r-xl px-2 py-1 shadow-md">
                                                                 <span className="text-xs font-medium text-gray-800">
                                                                     {project.client_name}
                                                                 </span>
@@ -592,7 +592,7 @@ export default function WebDevPage() {
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.8 }}
                                     >
-                                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium text-gray-900 mb-4">
+                                        <h2 className="text-xl sm:text-xl md:text-2xl lg:text-3xl font-medium text-gray-900 mb-4">
                                             Related Articles
                                         </h2>
                                     </motion.div>

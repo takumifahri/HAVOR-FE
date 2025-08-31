@@ -193,7 +193,7 @@ export default function Clients() {
                         className="text-center mb-16"
                         variants={titleVariants}
                     >
-                        <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
+                        <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">
                             OUR CLIENTS
                         </h2>
                         <div className="w-24  h-1 bg-gradient-to-r from-[#525254] to-[#3564A4] mx-auto rounded-full"></div>

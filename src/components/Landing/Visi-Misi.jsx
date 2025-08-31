@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function VisiMisi() {
     // Animation variants
@@ -43,7 +44,7 @@ export default function VisiMisi() {
                     className="text-center mb-16"
                     variants={itemVariants}
                 >
-                    <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
+                    <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">
                         HAVOR SMARTA DIGITAL
                     </h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-[#525254] to-[#3564A4] mx-auto rounded-full"></div>
@@ -79,7 +80,7 @@ export default function VisiMisi() {
                         variants={itemVariants}
                     >
                         <div className="space-y-3">
-                            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight text-left">
+                            <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-tight text-left">
                                 Your Partner in  <br />
                                 <span className="bg-gradient-to-r from-[#525254] to-[#3564A4] bg-clip-text text-transparent"> Digital Transformation</span>
                             </h3>
@@ -101,15 +102,17 @@ export default function VisiMisi() {
 
                         {/* CTA Button */}
                         <motion.button 
-                            className="w-full md:w-auto text-center md:text-left inline-flex items-center px-8 py-3 bg-gradient-to-r from-[#525254] to-[#3564A4] text-white font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                            className="w-full md:w-auto text-center md:text-left inline-flex items-center px-8 py-3 border border-black text-black font-medium rounded-full  transition-all duration-300 group"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                         >
-                            Learn More About Us
-                            <svg 
-                                className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" 
-                                fill="none" 
-                                stroke="currentColor" 
+                            <Link href="/about" className="flex items-center">
+                                Learn More About Us
+                            </Link>
+                            <svg
+                                className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200"
+                                fill="none"
+                                stroke="currentColor"
                                 viewBox="0 0 24 24"
                             >
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

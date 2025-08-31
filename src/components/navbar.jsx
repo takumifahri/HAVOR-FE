@@ -115,29 +115,29 @@ export default function Navbar() {
                 },
             ]
         },
-        {
-            name: 'Works',
-            sections: [
-                {
-                    title: 'Technology',
-                    items: [
-                        { name: 'Software Development', href: '/software-development' },
-                        { name: 'Cloud Solutions', href: '/cloud-solutions' },
-                        { name: 'AI & Machine Learning', href: '/ai-ml' },
-                        { name: 'Cybersecurity', href: '/cybersecurity' }
-                    ]
-                },
-                {
-                    title: 'Business',
-                    items: [
-                        { name: 'Financial Services', href: '/financial-services' },
-                        { name: 'Healthcare', href: '/healthcare' },
-                        { name: 'Retail & E-commerce', href: '/retail' },
-                        { name: 'Manufacturing', href: '/manufacturing' }
-                    ]
-                }
-            ]
-        },
+        // {
+        //     name: 'Works',
+        //     sections: [
+        //         {
+        //             title: 'Technology',
+        //             items: [
+        //                 { name: 'Software Development', href: '/software-development' },
+        //                 { name: 'Cloud Solutions', href: '/cloud-solutions' },
+        //                 { name: 'AI & Machine Learning', href: '/ai-ml' },
+        //                 { name: 'Cybersecurity', href: '/cybersecurity' }
+        //             ]
+        //         },
+        //         {
+        //             title: 'Business',
+        //             items: [
+        //                 { name: 'Financial Services', href: '/financial-services' },
+        //                 { name: 'Healthcare', href: '/healthcare' },
+        //                 { name: 'Retail & E-commerce', href: '/retail' },
+        //                 { name: 'Manufacturing', href: '/manufacturing' }
+        //             ]
+        //         }
+        //     ]
+        // },
         // {
         //     name: 'About',
         //     sections: [
@@ -353,12 +353,16 @@ export default function Navbar() {
 
                     {/* Desktop Navigation Links */}
                     <div className="hidden md:flex items-center space-x-8">
-                        {navigationItems.map(renderDesktopNavItem)}
                         <Link href="/about" className={styles.link}>
-                            About
+                            About Us
+                        </Link>
+                        {navigationItems.map(renderDesktopNavItem)}
+
+                        <Link href="/work" className={styles.link}>
+                            Works
                         </Link>
                         <Link href="/article" className={styles.link}>
-                            Blog
+                            Media & News
                         </Link>
                     </div>
 
@@ -371,7 +375,7 @@ export default function Navbar() {
                         </button>
                         <Link
                             href="/contact"
-                            className="bg-[#3768AA] hover:bg-[#3564A4] text-white px-6 py-2 rounded-lg font-medium transition duration-200"
+                            className={`border  ${scrolled || activeDropdown ? 'border-black' : 'border-white'}   ${scrolled || activeDropdown ? 'text-black' : 'text-white'}  px-6 py-2 rounded-full font-medium transition duration-200`}
                         >
                             Contact
                         </Link>
@@ -429,7 +433,6 @@ export default function Navbar() {
                     {/* Sidebar Navigation */}
                     <div className="flex-1 px-6 py-8 overflow-y-auto">
                         <nav className="space-y-4">
-                            {navigationItems.map(renderMobileNavItem)}
                             <Link
                                 href="/about"
                                 className="block text-gray-700 hover:text-[#3564A4] font-medium py-3 border-b border-gray-100"
@@ -437,12 +440,20 @@ export default function Navbar() {
                             >
                                 About
                             </Link>
+                            {navigationItems.map(renderMobileNavItem)}
+                            <Link
+                                href="/work"
+                                className="block text-gray-700 hover:text-[#3564A4] font-medium py-3 border-b border-gray-100"
+                                onClick={closeMobileMenu}
+                            >
+                                Works
+                            </Link>
                             <Link
                                 href="/article"
                                 className="block text-gray-700 hover:text-[#3564A4] font-medium py-3 border-b border-gray-100"
                                 onClick={closeMobileMenu}
                             >
-                                Blog
+                                Media & News
                             </Link>
                         </nav>
                     </div>
@@ -451,7 +462,7 @@ export default function Navbar() {
                     <div className="p-6 border-t border-gray-200">
                         <Link
                             href="/contact"
-                            className="flex bg-[#3768AA] hover:bg-[#3564A4] text-white py-3 px-4 rounded-lg justify-center items-center font-medium transition duration-300"
+                            className={`flex border  border-black text-black py-3 px-4 rounded-full justify-center items-center font-medium transition duration-300`}
                             onClick={closeMobileMenu}
                         >
                             Contact

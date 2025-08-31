@@ -296,7 +296,7 @@ export default function AboutPage() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
                       >
-                        <button className="bg-[#3768AA] hover:bg-[#3564A4] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                        <button className="border border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition duration-300 transform hover:scale-105 shadow-lg">
                           Discover Our Journey
                         </button>
                       </motion.div>
