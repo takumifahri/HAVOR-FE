@@ -102,7 +102,7 @@ export default function VisiMisi() {
 
                         {/* CTA Button */}
                         <motion.button 
-                            className="w-full md:w-auto text-center md:text-left inline-flex items-center px-8 py-3 border border-black text-black font-medium rounded-full  transition-all duration-300 group"
+                            className="w-full md:w-auto text-center md:text-left inline-flex  items-center px-8 py-3 border bg-transparent hover:text-white hover:border-white hover:bg-gradient-to-r from-[#525254] to-[#3564A4]  border-black text-black font-medium rounded-full  transition-all duration-300 group"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                         >

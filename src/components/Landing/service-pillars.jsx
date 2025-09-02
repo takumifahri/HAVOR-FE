@@ -197,7 +197,7 @@ export default function CoreServicePillars() {
                     variants={itemVariants}
                 >
                     <motion.button
-                        className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#525254] to-[#3564A4] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                        className="inline-flex items-center px-8 py-4 border border-black text-black bg-transparent hover:text-white hover:border-white hover:bg-gradient-to-r from-[#525254] to-[#3564A4]  font-semibold rounded-full shadow-xs hover:shadow-sm transition-all duration-300 group"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                     >
