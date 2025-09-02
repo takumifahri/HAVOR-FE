@@ -113,37 +113,75 @@ export default function ArticleSection() {
 
     // Error component
     const ErrorComponent = () => (
-        <section className="py-16 px-4 max-w-7xl mx-auto">
-            <div className="text-center">
-                <p className="text-red-600 mb-4">{error}</p>
-                <button
-                    onClick={fetchArticles}
-                    className="px-4 py-2 bg-[#3768AA] text-white rounded-md hover:bg-[#3564A4] transition-colors"
-                >
-                    Try Again
-                </button>
-            </div>
-        </section>
+        <>
+            <motion.div
+                className="text-center mb-16"
+                variants={itemVariants}
+            >
+                <h1 className="text-2xl md:text-2xl lg:text-3xl font-semibold text-foreground mb-4 uppercase">
+                    Latest Insights & Articles
+                </h1>
+                <motion.div
+                    className="w-24 h-1 bg-gradient-to-r from-[#525254] to-[#3564A4] mx-auto rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: 96 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                />
+            </motion.div>
+            <motion.div
+                className="text-center py-16"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8 }}
+            >
+                <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <h3 className="text-2xl font-medium text-gray-900 mb-4">No Content have been updated</h3>
+                <p className="text-gray-600 max-w-md mx-auto">
+                    Please wait and come again soon.
+                </p>
+            </motion.div>
+        </>
     );
 
     // Empty state component
     const EmptyStateComponent = () => (
-        <motion.div
-            className="text-center py-16"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-        >
-            <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-            </div>
-            <h3 className="text-2xl font-medium text-gray-900 mb-4">No Content have been updated</h3>
-            <p className="text-gray-600 max-w-md mx-auto">
-                Please wait and come again soon.
-            </p>
-        </motion.div>
+        <>
+            <motion.div
+                className="text-center mb-16"
+                variants={itemVariants}
+            >
+                <h1 className="text-2xl md:text-2xl lg:text-3xl font-semibold text-foreground mb-4 uppercase">
+                    Latest Insights & Articles
+                </h1>
+                <motion.div
+                    className="w-24 h-1 bg-gradient-to-r from-[#525254] to-[#3564A4] mx-auto rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: 96 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                />
+            </motion.div>
+            <motion.div
+                className="text-center py-16"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8 }}
+            >
+                <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <h3 className="text-2xl font-medium text-gray-900 mb-4">No Content have been updated</h3>
+                <p className="text-gray-600 max-w-md mx-auto">
+                    Please wait and come again soon.
+                </p>
+            </motion.div>
+        </>
+
     );
 
     // Article card component
@@ -168,7 +206,9 @@ export default function ArticleSection() {
                         transition={{ duration: 0.6, ease: "easeOut" }}
                     >
                         <Image
-                            src={getCleanImageUrl(article.image_url)}
+                            // src={getCleanImageUrl(article.image_url)}
+                            src={"/assets/avatar.jpg"}
+
                             alt={article.title}
                             fill
                             style={{ objectFit: 'cover' }}
@@ -204,7 +244,7 @@ export default function ArticleSection() {
                             {formatDate(article.created_at)}
                         </span>
                     </div>
-                
+
                     {/* Article Title */}
                     <motion.h3
                         className="text-lg font-semibold mb-2 text-card-foreground line-clamp-2"
@@ -223,7 +263,7 @@ export default function ArticleSection() {
                     >
                         {article.short_description}
                     </motion.p>
-                        {/* Industry & Service */}
+                    {/* Industry & Service */}
                     <div className="flex justify-between gap-2 mt-4">
                         {article.industry && (
                             <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-md">
@@ -250,8 +290,8 @@ export default function ArticleSection() {
     };
 
     // Conditional rendering
+    // Conditional rendering
     if (loading) return <LoadingComponent />;
-    if (error) return <ErrorComponent />;
 
     return (
         <main className="bg-background">
@@ -262,7 +302,7 @@ export default function ArticleSection() {
                 animate="visible"
                 viewport={{ once: true, amount: 0.1 }}
             >
-                {/* Header */}
+                {/* Header - Selalu tampil */}
                 <motion.div
                     className="text-center mb-16"
                     variants={itemVariants}
@@ -278,52 +318,87 @@ export default function ArticleSection() {
                     />
                 </motion.div>
 
-                {/* Articles Grid */}
-                {articles.length > 0 ? (
+                {/* Conditional Content */}
+                {error ? (
                     <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="visible"
+                        className="text-center py-16"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8 }}
                     >
-                        {articles.map((article) => (
-                            <Link
-                                key={`article-link-${article.id}`}
-                                href={`/article/${generateSlugFromTitle(article.title)}`}
-                            >
-                                <ArticleCard article={article} />
-                            </Link>
-                        ))}
+                        <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <h3 className="text-2xl font-medium text-gray-900 mb-4">No Content have been updated</h3>
+                        <p className="text-gray-600 max-w-md mx-auto">
+                            Please wait and come again soon.
+                        </p>
                     </motion.div>
-                ) : (
-                    <EmptyStateComponent />
-                )}
-
-                {/* CTA Section */}
-                <motion.div
-                    className="text-center mt-16"
-                    variants={itemVariants}
-                >
-                    <Link href="/article">
-                        <motion.button
-                            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#525254] to-[#3564A4] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
+                ) : articles.length > 0 ? (
+                    <>
+                        {/* Articles Grid */}
+                        <motion.div
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate="visible"
                         >
-                            View All Articles
-                            <motion.svg
-                                className="ml-2 w-5 h-5"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                whileHover={{ x: 5 }}
-                                transition={{ duration: 0.2 }}
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </motion.svg>
-                        </motion.button>
-                    </Link>
-                </motion.div>
+                            {articles.map((article) => (
+                                <Link
+                                    key={`article-link-${article.id}`}
+                                    href={`/article/${generateSlugFromTitle(article.title)}`}
+                                >
+                                    <ArticleCard article={article} />
+                                </Link>
+                            ))}
+                        </motion.div>
+
+                        {/* CTA Section */}
+                        <motion.div
+                            className="text-center mt-16"
+                            variants={itemVariants}
+                        >
+                            <Link href="/article">
+                                <motion.button
+                                    className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#525254] to-[#3564A4] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    View All Articles
+                                    <motion.svg
+                                        className="ml-2 w-5 h-5"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        whileHover={{ x: 5 }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </motion.svg>
+                                </motion.button>
+                            </Link>
+                        </motion.div>
+                    </>
+                ) : (
+                    <motion.div
+                        className="text-center py-16"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <h3 className="text-2xl font-medium text-gray-900 mb-4">No Content have been updated</h3>
+                        <p className="text-gray-600 max-w-md mx-auto">
+                            Please wait and come again soon.
+                        </p>
+                    </motion.div>
+                )}
             </motion.section>
         </main>
     );
