@@ -22,8 +22,8 @@ export default function RootLayout({ children }) {
       >
 
         <ConditionalLayout >
-        {children}
-        
+          {children}
+
         </ConditionalLayout>
       </body>
     </html>

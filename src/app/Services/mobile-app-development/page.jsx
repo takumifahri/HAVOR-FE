@@ -254,7 +254,7 @@ Our commitment doesn't end at launch. We provide ongoing support and maintenance
                                                 </Link>
                                             </motion.p>
                                             <motion.h1
-                                                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight"
+                                                className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight"
                                                 initial={{ opacity: 0, x: -50 }}
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ duration: 0.8 }}
@@ -274,7 +274,7 @@ Our commitment doesn't end at launch. We provide ongoing support and maintenance
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ duration: 0.8, delay: 0.4 }}
                                             >
-                                                <button className="bg-[#3768AA] hover:bg-[#3564A4] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                                                <button className="bg-transparent border  border-white   hover:bg-gradient-to-r from-[#3768AA] to-[#3564A4] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition duration-300 transform hover:scale-105 shadow-lg">
                                                     Start Your App Project
                                                 </button>
                                             </motion.div>
