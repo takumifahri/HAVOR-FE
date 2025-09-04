@@ -1,4 +1,4 @@
-import { DM_Sans } from "next/font/google";
+import { DM_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
@@ -6,6 +6,11 @@ import ConditionalLayout from "./conditionalLayout";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
+  subsets: ["latin"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -18,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${dmSans.variable} antialiased`}
+        className={`${inter.variable} antialiased`}
       >
 
         <ConditionalLayout >
